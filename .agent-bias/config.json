@@ -1,8 +1,8 @@
 {
-  "id": "1be47a45-d381-422d-bffd-bca4beae3eea",
-  "didIdentifier": "did:polygonid:polygon:amoy:2qVgfWdmAjtfDE5RABmFZmwc5EToYWkGqzvp449jRh",
+  "id": "6807554b-95f2-446b-badd-1a7e834ea1cc",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qYPmFaqeuQEUnJvAGMijchThWHw3ReUyvycgcVqtF",
   "did": {
-    "id": "urn:ad2a7c85-4dd1-4713-adc7-f9ce980e6862",
+    "id": "urn:48ef5ea3-7f6c-41fd-8c3f-e751ba336cde",
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
       "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
@@ -13,34 +13,34 @@
       "AuthBJJCredential"
     ],
     "credentialSubject": {
-      "x": "2691623962823736547232122295558881660231783180557527913883217690429987505909",
-      "y": "13348619003659837243992704085102142419074145384737150830918923333808179577498",
+      "x": "21784547879738776502661376401566627181653553479419663114328083943407955208188",
+      "y": "12776326529371254843348588050289687398050828904318932505114921003020185901922",
       "type": "AuthBJJCredential"
     },
-    "issuer": "did:polygonid:polygon:amoy:2qVgfWdmAjtfDE5RABmFZmwc5EToYWkGqzvp449jRh",
+    "issuer": "did:polygonid:polygon:amoy:2qYPmFaqeuQEUnJvAGMijchThWHw3ReUyvycgcVqtF",
     "credentialSchema": {
       "id": "https://schema.iden3.io/core/json/auth.json",
       "type": "JsonSchema2023"
     },
     "credentialStatus": {
-      "id": "https://rhs-staging.polygonid.me/node?state=0f283877d57b41b2c2fd3be3733fb0fab9f05ff31bc6e7af3dba5e9dd7ffa719",
+      "id": "https://rhs-staging.polygonid.me/node?state=901d2c472fb6ebe213e44b2bcedf06d57169e6875c0714a87a21113e04d4cf0f",
       "type": "Iden3ReverseSparseMerkleTreeProof",
       "revocationNonce": 0
     },
-    "issuanceDate": "2026-03-08T04:25:08.306Z",
+    "issuanceDate": "2026-03-08T04:57:10.771Z",
     "proof": [
       {
         "issuerData": {
-          "id": "did:polygonid:polygon:amoy:2qVgfWdmAjtfDE5RABmFZmwc5EToYWkGqzvp449jRh",
+          "id": "did:polygonid:polygon:amoy:2qYPmFaqeuQEUnJvAGMijchThWHw3ReUyvycgcVqtF",
           "state": {
             "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
             "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
-            "claimsTreeRoot": "a787e77128db2cd5ba6fc0cdd99aea43b850c8f2bcf27950619551974f442703",
-            "value": "0f283877d57b41b2c2fd3be3733fb0fab9f05ff31bc6e7af3dba5e9dd7ffa719"
+            "claimsTreeRoot": "6e479232674e25a270fa686a42320682207addb41957d4ebd20d4108eaf2a30e",
+            "value": "901d2c472fb6ebe213e44b2bcedf06d57169e6875c0714a87a21113e04d4cf0f"
           }
         },
         "type": "Iden3SparseMerkleTreeProof",
-        "coreClaim": "cca3371a6cb1b715004407e325bd993c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f546f47b12dca4eb3efc8da56468172e36c1df0359ee487f396e1a95b967f3059a02ff26b55fcdf9a68ff449d36a60766396a98dca75e61eddb1961df50c831d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000fce7c7beb433c43650df8e11501bb2d51db5597222b6a703c5bacedafd9d2930621b66072333921ae2d4e1ffdac39f66d705f013fa4017c692c9977501253f1c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
         "mtp": {
           "existence": true,
           "siblings": []
@@ -50,5 +50,5 @@
   },
   "name": "Bias Agent",
   "description": "Detects bias signals in hiring decisions and produces an explainable bias report.",
-  "seed": "nQHgQBzGu1iHn8Ku/OO/GpIFny0+jNjilUTyCGp9h5Q="
+  "seed": "bwnIZCjCReTYrtvhJjikrrBhjbhPyMFuMPA1misUuVY="
 }

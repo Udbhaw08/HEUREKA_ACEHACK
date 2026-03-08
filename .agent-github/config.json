@@ -1,8 +1,8 @@
 {
-  "id": "ed792a64-e7a8-4261-90d4-8693554165d1",
-  "didIdentifier": "did:polygonid:polygon:amoy:2qS3ZZdFBPhZUBHZCzY1BrQRGjtExF48NQJwHecQPF",
+  "id": "32c9cecb-7127-46db-ad39-ec2a96816e31",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qRZSx5rraMx9qGcJTKsvyhEqwLSG1Q5oDThG7jHir",
   "did": {
-    "id": "urn:a12ea679-ec41-4ceb-83e7-9cec1c074715",
+    "id": "urn:8ee27761-83f9-439e-857d-e883b59c30fd",
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
       "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
@@ -13,34 +13,34 @@
       "AuthBJJCredential"
     ],
     "credentialSubject": {
-      "x": "364684821842063676222495672644453598909579535727937771441837108044956748397",
-      "y": "19917422015146762026558332582972479326622008565129096728490542897570215735589",
+      "x": "20395935902111358924167427229142848442916998379143217949367023113234813758047",
+      "y": "13046191062320610788926127204309033065764172795597879095456273725146713223295",
       "type": "AuthBJJCredential"
     },
-    "issuer": "did:polygonid:polygon:amoy:2qS3ZZdFBPhZUBHZCzY1BrQRGjtExF48NQJwHecQPF",
+    "issuer": "did:polygonid:polygon:amoy:2qRZSx5rraMx9qGcJTKsvyhEqwLSG1Q5oDThG7jHir",
     "credentialSchema": {
       "id": "https://schema.iden3.io/core/json/auth.json",
       "type": "JsonSchema2023"
     },
     "credentialStatus": {
-      "id": "https://rhs-staging.polygonid.me/node?state=67639ba3b02b14eef5dd8c4c510a853ea3dc70c3894fb9c25ded54fb75df6a2f",
+      "id": "https://rhs-staging.polygonid.me/node?state=37490e45182067818d5c7672735993bcd2f30e19dd3ed2d405292b2e615b0b20",
       "type": "Iden3ReverseSparseMerkleTreeProof",
       "revocationNonce": 0
     },
-    "issuanceDate": "2026-03-08T04:25:20.663Z",
+    "issuanceDate": "2026-03-08T04:57:22.054Z",
     "proof": [
       {
         "issuerData": {
-          "id": "did:polygonid:polygon:amoy:2qS3ZZdFBPhZUBHZCzY1BrQRGjtExF48NQJwHecQPF",
+          "id": "did:polygonid:polygon:amoy:2qRZSx5rraMx9qGcJTKsvyhEqwLSG1Q5oDThG7jHir",
           "state": {
             "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
             "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
-            "claimsTreeRoot": "0a86a6ac4aa891ca81f57c83839a1a80e91b5488dfb0bf8905ef02f373550124",
-            "value": "67639ba3b02b14eef5dd8c4c510a853ea3dc70c3894fb9c25ded54fb75df6a2f"
+            "claimsTreeRoot": "9e980f2504d0dd825fddba6cb450ae3a262bac74a40df9eb22a6f397d3346a04",
+            "value": "37490e45182067818d5c7672735993bcd2f30e19dd3ed2d405292b2e615b0b20"
           }
         },
         "type": "Iden3SparseMerkleTreeProof",
-        "coreClaim": "cca3371a6cb1b715004407e325bd993c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006dca68a27041742e54b0b3d34433bcf90a517570073002b815d3a6d77f67ce0025b189ba02c3fd6354e84a4648baa77b7a206b05b8139114d4b6b67182dc082c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005f2a2b67e82f23a03e06ecd7ad08a4b5d16127cae7d35e916b43acf8ccb0172d7ff06e766345eddcd19a8e9636e5f760e300c93f2918e6eaec2f6450e9e1d71c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
         "mtp": {
           "existence": true,
           "siblings": []
@@ -50,5 +50,5 @@
   },
   "name": "GitHub Agent",
   "description": "Scrapes and analyzes GitHub profiles for developer technical evidence.",
-  "seed": "7g39DR5F1WOOaP6dJqPd7xc1OIQW9Vkk0FcEOaIb7AA="
+  "seed": "8yHgY775eC1fJQuhF0jk75B6jrkOFUVB3Dh5vd8akj0="
 }

@@ -1,8 +1,8 @@
 {
-  "id": "92beca11-81f9-4063-85c8-eab6b89622af",
-  "didIdentifier": "did:polygonid:polygon:amoy:2qaNxwcZPZ889sv9g8Tx7DSxh9BAwDUYTo1UuE4deM",
+  "id": "59dbaf52-9ad0-44a8-8342-8638c6a199e5",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qa1YDxhjv8xaKHi7f3PCcTmdSr5kSuhTfwjvteqSD",
   "did": {
-    "id": "urn:5b88513d-8e96-4aa7-8240-d8643b976b4f",
+    "id": "urn:642cee1d-656b-461e-8e12-537c83e304b0",
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
       "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
@@ -13,34 +13,34 @@
       "AuthBJJCredential"
     ],
     "credentialSubject": {
-      "x": "21736208033339164508964312997650937984708906509990544167555030412615990946098",
-      "y": "17967812174120295269805871167970679964483766811476223228653908458023984684866",
+      "x": "19704794496204906372642704547962750192393999120071472025349758132444052470771",
+      "y": "12858324065350272549607322496753937070999107283331170669887415801350962078950",
       "type": "AuthBJJCredential"
     },
-    "issuer": "did:polygonid:polygon:amoy:2qaNxwcZPZ889sv9g8Tx7DSxh9BAwDUYTo1UuE4deM",
+    "issuer": "did:polygonid:polygon:amoy:2qa1YDxhjv8xaKHi7f3PCcTmdSr5kSuhTfwjvteqSD",
     "credentialSchema": {
       "id": "https://schema.iden3.io/core/json/auth.json",
       "type": "JsonSchema2023"
     },
     "credentialStatus": {
-      "id": "https://rhs-staging.polygonid.me/node?state=bef365e242e2ac8730feff7b3a49456b288f9802dd54e1bb7866dfec88c5870d",
+      "id": "https://rhs-staging.polygonid.me/node?state=93fbdf386bda8955fd5645f8db9723a26aeaf96ba9d68a073c037ef937c9520c",
       "type": "Iden3ReverseSparseMerkleTreeProof",
       "revocationNonce": 0
     },
-    "issuanceDate": "2026-03-08T04:25:11.712Z",
+    "issuanceDate": "2026-03-08T04:57:14.218Z",
     "proof": [
       {
         "issuerData": {
-          "id": "did:polygonid:polygon:amoy:2qaNxwcZPZ889sv9g8Tx7DSxh9BAwDUYTo1UuE4deM",
+          "id": "did:polygonid:polygon:amoy:2qa1YDxhjv8xaKHi7f3PCcTmdSr5kSuhTfwjvteqSD",
           "state": {
             "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
             "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
-            "claimsTreeRoot": "0a4f2d4e75ec60eef2612905eb815893e657657de877cbda17b9d2c76ef17e0b",
-            "value": "bef365e242e2ac8730feff7b3a49456b288f9802dd54e1bb7866dfec88c5870d"
+            "claimsTreeRoot": "0c3809e86abe472e9bfc20c791348a55ba2318bcea5fa22db2a4bd340def2f22",
+            "value": "93fbdf386bda8955fd5645f8db9723a26aeaf96ba9d68a073c037ef937c9520c"
           }
         },
         "type": "Iden3SparseMerkleTreeProof",
-        "coreClaim": "cca3371a6cb1b715004407e325bd993c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000032a900a59148b0644e43e5f221f08c3d8bbe92f21faefeab221a804cfd410e3042df8914b22c9facffc92f6eb78fbc1167ca8043f5d649186569724eda6bb9270000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f33b660d18f1f90d2d7d0aaba3358c9478099e26401c8e04200ffd6eb984902be6e4d492cfd51230ffb02b7fba4f6a1c8fca7062f591622a2891771bb38d6d1c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
         "mtp": {
           "existence": true,
           "siblings": []
@@ -50,5 +50,5 @@
   },
   "name": "Skill Agent",
   "description": "Verifies developer skills from evidence and produces structured skill signals and confidence.",
-  "seed": "YLXhqeAb1eK0AK+0H7Vqw5Nao/9jVqtfHRzrJr/NHrw="
+  "seed": "uSVFnAaDwQTr57P4Dn2a+fC6KpI/Q/U0cTytgYWGhs0="
 }

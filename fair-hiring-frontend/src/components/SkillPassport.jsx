@@ -218,11 +218,17 @@ const SkillPassport = ({ isStandalone = false, onBack, candidateId }) => {
 
         const transformCredential = (existingData) => {
             const cred = existingData?.credential || existingData?.credential_json || existingData;
-            const passportData = cred?.evidence?.passport || cred?.passport_record || cred;
-            const output = passportData?.public_view || cred?.public_view || cred?.output || passportData || cred;
+            const derived = cred?.derived || {};
+            const passportEvidence = cred?.evidence?.passport || {};
+            const skillsEvidence = cred?.evidence?.skills?.output || cred?.evidence?.skills || {};
 
-            // USE REAL SKILLS FROM BACKEND
-            let existingSkills = output?.verified_skills || cred?.verified_skills || cred?.evidence?.skills || { core: [], frameworks: [], infrastructure: [], tools: [] };
+            // Extract verified_skills from multiple possible locations
+            let existingSkills =
+                derived?.verified_skills ||
+                passportEvidence?.verified_skills ||
+                skillsEvidence?.verified_skills ||
+                cred?.verified_skills ||
+                { core: [], frameworks: [], infrastructure: [], tools: [] };
 
             // Handle flat list format if it's not a tiered object
             let verifiedSkills = {
@@ -237,11 +243,11 @@ const SkillPassport = ({ isStandalone = false, onBack, candidateId }) => {
                 existingSkills.forEach(s => {
                     const name = typeof s === 'string' ? s : (s.skill || s.name || "");
                     const lower = name.toLowerCase();
-                    if (["react", "next.js", "django", "flask", "node.js", "express"].some(fw => lower.includes(fw))) {
+                    if (["react", "next.js", "django", "flask", "node.js", "express", "tensorflow", "opencv", "fastapi"].some(fw => lower.includes(fw))) {
                         verifiedSkills.frameworks.push(s);
-                    } else if (["aws", "docker", "kubernetes", "cloud", "infra"].some(inf => lower.includes(inf))) {
+                    } else if (["aws", "docker", "kubernetes", "cloud", "infra", "lambda", "sagemaker"].some(inf => lower.includes(inf))) {
                         verifiedSkills.infrastructure.push(s);
-                    } else if (["git", "github", "vs code", "jira"].some(t => lower.includes(t))) {
+                    } else if (["git", "github", "vs code", "jira", "grafana", "jupyter", "visual studio"].some(t => lower.includes(t))) {
                         verifiedSkills.tools.push(s);
                     } else {
                         verifiedSkills.core.push(s);
@@ -256,22 +262,54 @@ const SkillPassport = ({ isStandalone = false, onBack, candidateId }) => {
                 };
             }
 
+            // Extract confidence from multiple locations
+            const confidence =
+                derived?.confidence ||
+                derived?.skill_confidence ||
+                skillsEvidence?.skill_confidence ||
+                cred?.match_score ||
+                0;
+
+            // Extract match score
+            const matchScore = derived?.match_score || cred?.evidence?.matching?.match_score || 0;
+
+            // Extract status
+            const pipelineStatus = cred?.pipeline_status || cred?.application_status || "";
+            const credStatus =
+                derived?.credential_status ||
+                skillsEvidence?.credential_status ||
+                (pipelineStatus === "completed" || cred?.stages_completed?.includes("PASSPORT") ? "VERIFIED" : pipelineStatus.toUpperCase()) ||
+                "VERIFIED";
+
+            // Extract issued date
+            const issuedAt =
+                passportEvidence?.issued_at ||
+                cred?.started_at ||
+                existingData?.issued_at ||
+                new Date().toISOString();
+
             return {
-                id: output?.id || output?.credential_id || cred?.credential_id || `PASSPORT-${existingData.application_id || 'UNKNOWN'}`,
-                candidateId: output?.candidate_id || cred?.candidate_id || anon,
-                confidence: output?.skill_confidence || output?.confidence || cred?.derived?.confidence || cred?.match_score || 0,
+                id: cred?.credential_id || existingData?.application_id
+                    ? `PASSPORT-${existingData?.application_id || cred?.credential_id || 'UNKNOWN'}`
+                    : `PASSPORT-UNKNOWN`,
+                candidateId: existingData?.anon_id || cred?.candidate_id || anon,
+                confidence: confidence,
+                matchScore: matchScore,
                 verifiedSkills: verifiedSkills,
-                status: output?.credential_status || (cred?.status === 'completed' ? 'VERIFIED' : cred?.status) || "VERIFIED",
-                issuedAt: output?.issued_at || cred?.issued_at || new Date().toISOString(),
-                expiresAt: output?.expires_at || cred?.expires_at || (() => {
-                    const d = new Date(output?.issued_at || cred?.issued_at || new Date());
+                status: credStatus,
+                issuedAt: issuedAt,
+                expiresAt: (() => {
+                    const d = new Date(issuedAt);
                     d.setFullYear(d.getFullYear() + 1);
                     return d.toISOString();
                 })(),
                 distribution: [
                     { range: "0-20", count: 5 }, { range: "21-40", count: 12 }, { range: "41-60", count: 18 },
                     { range: "61-80", count: 22 }, { range: "81-100", count: 9 },
-                ]
+                ],
+                verified: existingData?.verified || false,
+                signatureB64: existingData?.signature_b64 || "",
+                hashSha256: existingData?.hash_sha256 || "",
             };
         };
 
@@ -286,16 +324,24 @@ const SkillPassport = ({ isStandalone = false, onBack, candidateId }) => {
 
             try {
                 const result = await api.getPassport(anon);
-                console.log("API Result:", result);
+                console.log("API Result type:", typeof result, Array.isArray(result));
+                console.log("API Result:", JSON.stringify(result)?.substring(0, 500));
 
+                let items = [];
                 if (Array.isArray(result)) {
-                    // Handle List of Credentials
-                    const mapped = result.map(transformCredential);
+                    items = result;
+                } else if (result?.credentials && Array.isArray(result.credentials)) {
+                    items = result.credentials;
+                } else if (result && (result.credential || result.credential_json || result.anon_id)) {
+                    items = [result];
+                }
+
+                if (items.length > 0) {
+                    const mapped = items.map(transformCredential);
+                    console.log("Mapped credentials:", mapped);
                     setPassportSkills(mapped);
-                } else if (result && (result.credential || result.credential_json)) {
-                    // Handle Single Object (Legacy or edge case)
-                    setPassportSkills([transformCredential(result)]);
                 } else {
+                    console.warn("No credentials found in response");
                     setPassportSkills([]);
                 }
             } catch (e) {
