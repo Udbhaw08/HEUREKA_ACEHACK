@@ -60,7 +60,9 @@ def build_agent() -> ZyndAIAgent:
 
 def attach_handler(agent: ZyndAIAgent) -> None:
     def handler(message: AgentMessage, topic: str):
+        print(f"\n[leetcode] 📬 Received Message ID: {message.message_id}")
         payload = parse_json_content(message.content)
+        print(f"[leetcode] 🔍 Payload: {payload}")
         
         try:
             from scraper.leetcode_tool import analyze_leetcode_profile # type: ignore
@@ -73,8 +75,9 @@ def attach_handler(agent: ZyndAIAgent) -> None:
                 
             if not username:
                 result = {"error": "Username or leetcode_url required", "success": False}
+                print("[leetcode] ⚠️ Error: Username required")
             else:
-                print(f"[leetcode] Analyzing user: {username}")
+                print(f"[leetcode] 🚀 Analyzing Profile: {username}")
                 # Reusing existing tool logic
                 leetcode_data = analyze_leetcode_profile(f"https://leetcode.com/{username}")
                 
@@ -88,14 +91,16 @@ def attach_handler(agent: ZyndAIAgent) -> None:
                     "top_language": leetcode_data.get("top_language"),
                     "contest_rating": leetcode_data.get("contest_rating", 0)
                 }
+                print(f"[leetcode] ✅ Analysis Complete for {username}")
         except Exception as e:
             import traceback
-            print(f"[leetcode] Error in handler: {str(e)}")
+            print(f"[leetcode] ❌ Error in handler: {str(e)}")
             traceback.print_exc()
             result = {"error": str(e), "agent": "leetcode"}
 
         # Sync callers wait on this
         agent.set_response(message.message_id, dump_json(result))
+        print(f"[leetcode] 📤 Sent Result for {message.message_id}\n")
 
     agent.add_message_handler(handler)
 

@@ -45,7 +45,9 @@ def build_agent() -> ZyndAIAgent:
 
 def attach_handler(agent: ZyndAIAgent) -> None:
     def handler(message: AgentMessage, topic: str):
+        print(f"\n[github] 📬 Received Message ID: {message.message_id}")
         payload = parse_json_content(message.content)
+        print(f"[github] 🔍 Payload: {payload}")
         start_time = time.time()
         
         try:
@@ -59,7 +61,9 @@ def attach_handler(agent: ZyndAIAgent) -> None:
             
             if not username:
                 result = {"error": "Invalid GitHub URL", "success": False}
+                print("[github] ⚠️ Error: Invalid URL or username")
             else:
+                print(f"[github] 🚀 Analyzing Profile: {username}")
                 token = os.getenv("GITHUB_PAT") or os.getenv("GITHUB_TOKEN")
                 client = GitHubAPIClient(token=token)
                 
@@ -68,6 +72,7 @@ def attach_handler(agent: ZyndAIAgent) -> None:
                 user = client.get_user_profile(username)
                 if not user:
                     result = {"error": f"User not found: {username}", "success": False}
+                    print(f"[github] ⚠️ User not found: {username}")
                 else:
                     repos = client.get_user_repos(username, max_repos=20)
                     languages = client.aggregate_languages(username, repos)
@@ -88,13 +93,16 @@ def attach_handler(agent: ZyndAIAgent) -> None:
                             "best_repositories": best_repos.get("best_repositories", [])
                         }
                     }
+                    print(f"[github] ✅ Analysis Complete for {username}")
         except Exception as e:
             import traceback
+            print(f"[github] ❌ Error in handler: {str(e)}")
             traceback.print_exc()
             result = {"error": str(e), "agent": "github"}
 
         # Sync callers wait on this
         agent.set_response(message.message_id, dump_json(result))
+        print(f"[github] 📤 Sent Result for {message.message_id}\n")
 
     agent.add_message_handler(handler)
 

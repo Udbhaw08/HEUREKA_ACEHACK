@@ -134,7 +134,7 @@ class PipelineService:
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         resume_path = os.path.join(BASE_DIR, "data", "resumes", f"{application.candidate.anon_id}_{application.job_id}.pdf")
         
-        linkedin_path = os.path.join(BASE_DIR, "data", "linkedins", f"{application.candidate.anon_id}_{application.job_id}.pdf")
+        linkedin_path = os.path.join(BASE_DIR, "data", "linkedin", f"{application.candidate.anon_id}_{application.job_id}.pdf")
         
         data = {
             "anon_id": application.candidate.anon_id,

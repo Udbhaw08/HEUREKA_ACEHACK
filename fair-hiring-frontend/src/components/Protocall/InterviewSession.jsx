@@ -52,6 +52,9 @@ export const InterviewSession = ({ config, onComplete }) => {
     const timerIntervalRef = useRef(null);
     const isMutedRef = useRef(false);
     const elevenLabsAudioRef = useRef(null);
+    const sessionActiveRef = useRef(false);
+    const audioSourceRef = useRef(null);
+    const scriptProcessorRef = useRef(null);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -100,6 +103,7 @@ export const InterviewSession = ({ config, onComplete }) => {
     };
 
     const cleanup = useCallback(() => {
+        sessionActiveRef.current = false;
         if (sessionRef.current) {
             try { sessionRef.current.close(); } catch (e) { }
             sessionRef.current = null;
@@ -108,6 +112,14 @@ export const InterviewSession = ({ config, onComplete }) => {
             try { audioContextRef.current.input.close(); } catch (e) { }
             try { audioContextRef.current.output.close(); } catch (e) { }
             audioContextRef.current = null;
+        }
+        if (audioSourceRef.current) {
+            try { audioSourceRef.current.disconnect(); } catch (e) { }
+            audioSourceRef.current = null;
+        }
+        if (scriptProcessorRef.current) {
+            try { scriptProcessorRef.current.disconnect(); } catch (e) { }
+            scriptProcessorRef.current = null;
         }
         if (frameIntervalRef.current) {
             clearInterval(frameIntervalRef.current);
@@ -119,6 +131,7 @@ export const InterviewSession = ({ config, onComplete }) => {
         }
         if (feedbackTimeoutRef.current) {
             clearTimeout(feedbackTimeoutRef.current);
+            feedbackTimeoutRef.current = null;
         }
         if (elevenLabsAudioRef.current) {
             elevenLabsAudioRef.current.pause();
@@ -164,6 +177,7 @@ export const InterviewSession = ({ config, onComplete }) => {
                 model: GEMINI_MODEL,
                 callbacks: {
                     onopen: () => {
+                        sessionActiveRef.current = true;
                         setIsReady(true);
                         setIsListening(true);
                         inCtx.resume();
@@ -171,17 +185,22 @@ export const InterviewSession = ({ config, onComplete }) => {
 
                         const source = inCtx.createMediaStreamSource(stream);
                         const scriptProcessor = inCtx.createScriptProcessor(4096, 1, 1);
+                        audioSourceRef.current = source;
+                        scriptProcessorRef.current = scriptProcessor;
+
                         scriptProcessor.onaudioprocess = (e) => {
-                            if (isMutedRef.current) return;
+                            if (isMutedRef.current || !sessionActiveRef.current) return;
                             const inputData = e.inputBuffer.getChannelData(0);
                             const pcmBlob = createPcmBlob(inputData);
-                            sessionPromise.then(s => s.sendRealtimeInput({ media: pcmBlob })).catch(() => { });
+                            sessionPromise.then(s => {
+                                if (sessionActiveRef.current) s.sendRealtimeInput({ media: pcmBlob });
+                            }).catch(() => { });
                         };
                         source.connect(scriptProcessor);
                         scriptProcessor.connect(inCtx.destination);
 
                         frameIntervalRef.current = window.setInterval(() => {
-                            if (videoRef.current && canvasRef.current && sessionRef.current) {
+                            if (videoRef.current && canvasRef.current && sessionRef.current && sessionActiveRef.current) {
                                 const canvas = canvasRef.current;
                                 const video = videoRef.current;
                                 const ctx = canvas.getContext('2d');
@@ -190,11 +209,15 @@ export const InterviewSession = ({ config, onComplete }) => {
                                     canvas.height = video.videoHeight;
                                     ctx.drawImage(video, 0, 0);
                                     canvas.toBlob(async (blob) => {
-                                        if (blob) {
+                                        if (blob && sessionActiveRef.current) {
                                             const base64Data = await blobToBase64(blob);
-                                            sessionPromise.then(s => s.sendRealtimeInput({
-                                                media: { data: base64Data, mimeType: 'image/jpeg' }
-                                            })).catch(() => { });
+                                            sessionPromise.then(s => {
+                                                if (sessionActiveRef.current) {
+                                                    s.sendRealtimeInput({
+                                                        media: { data: base64Data, mimeType: 'image/jpeg' }
+                                                    });
+                                                }
+                                            }).catch(() => { });
                                         }
                                     }, 'image/jpeg', JPEG_QUALITY);
                                 }
@@ -202,9 +225,13 @@ export const InterviewSession = ({ config, onComplete }) => {
                         }, 1000 / FRAME_RATE);
 
                         setTimeout(() => {
-                            sessionPromise.then(s => s.send({
-                                text: "Begin the interview. Greet the candidate and ask your first question."
-                            })).catch(() => { });
+                            sessionPromise.then(s => {
+                                if (sessionActiveRef.current) {
+                                    s.send({
+                                        text: "Begin the interview. Greet the candidate and ask your first question."
+                                    });
+                                }
+                            }).catch(() => { });
                         }, 1000);
                     },
                     onmessage: async (msg) => {
@@ -217,9 +244,13 @@ export const InterviewSession = ({ config, onComplete }) => {
                                     setVisualFeedback(args);
                                     if (feedbackTimeoutRef.current) clearTimeout(feedbackTimeoutRef.current);
                                     feedbackTimeoutRef.current = window.setTimeout(() => setVisualFeedback(null), 4000);
-                                    sessionPromise.then(s => s.sendToolResponse({
-                                        functionResponses: { id: fc.id, name: fc.name, response: { result: "ok" } }
-                                    })).catch(() => { });
+                                    sessionPromise.then(s => {
+                                        if (sessionActiveRef.current) {
+                                            s.sendToolResponse({
+                                                functionResponses: { id: fc.id, name: fc.name, response: { result: "ok" } }
+                                            });
+                                        }
+                                    }).catch(() => { });
                                 }
                             }
                         }
@@ -291,10 +322,12 @@ export const InterviewSession = ({ config, onComplete }) => {
                         }
                     },
                     onerror: (e) => {
+                        sessionActiveRef.current = false;
                         setError(`Hardware Link Error: ${e.message || 'Connection failed'}`);
                         setIsListening(false);
                     },
                     onclose: (e) => {
+                        sessionActiveRef.current = false;
                         setIsListening(false);
                     }
                 },

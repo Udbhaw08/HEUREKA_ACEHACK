@@ -42,7 +42,9 @@ def build_agent() -> ZyndAIAgent:
 
 def attach_handler(agent: ZyndAIAgent) -> None:
     def handler(message: AgentMessage, topic: str):
+        print(f"\n[linkedin] 📬 Received Message ID: {message.message_id}")
         payload = parse_json_content(message.content)
+        print(f"[linkedin] 🔍 Payload: {payload}")
         
         try:
             from skill_verification_agent.agents.linkedin_parser import LinkedInPDFParser
@@ -53,7 +55,9 @@ def attach_handler(agent: ZyndAIAgent) -> None:
             
             if not tmp_path or not os.path.exists(tmp_path):
                 result = {"error": f"LinkedIn PDF not found at {tmp_path}", "success": False}
+                print(f"[linkedin] ⚠️ Error: PDF not found at {tmp_path}")
             else:
+                print(f"[linkedin] 🚀 Parsing PDF: {os.path.basename(tmp_path)}")
                 parsed = parser.parse(tmp_path)
                 result = {
                     "success": True,
@@ -62,13 +66,16 @@ def attach_handler(agent: ZyndAIAgent) -> None:
                     "skills": parsed.get("skills", {}),
                     "confidence_score": parsed.get("confidence_score", 0.0)
                 }
+                print(f"[linkedin] ✅ Parsing Complete for {parsed.get('identity', {}).get('name', 'Unknown')}")
         except Exception as e:
             import traceback
+            print(f"[linkedin] ❌ Error in handler: {str(e)}")
             traceback.print_exc()
             result = {"error": str(e), "agent": "linkedin"}
 
         # Sync callers wait on this
         agent.set_response(message.message_id, dump_json(result))
+        print(f"[linkedin] 📤 Sent Result for {message.message_id}\n")
 
     agent.add_message_handler(handler)
 

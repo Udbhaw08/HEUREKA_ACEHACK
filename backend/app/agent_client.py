@@ -40,16 +40,16 @@ class AgentClient:
         
         # Agent service endpoints - Authoritative Map
         self.endpoints = {
-            "matching": os.getenv("MATCHING_SERVICE_URL", "http://localhost:8001"),
-            "bias": os.getenv("BIAS_SERVICE_URL", "http://localhost:8002"),
-            "skill": os.getenv("SKILL_SERVICE_URL", "http://localhost:8003"),
-            "ats": os.getenv("ATS_SERVICE_URL", "http://localhost:8004"),
-            "github": os.getenv("GITHUB_SERVICE_URL", "http://localhost:8005"),
-            "leetcode": os.getenv("LEETCODE_SERVICE_URL", "http://localhost:8006"),
-            "linkedin": os.getenv("LINKEDIN_SERVICE_URL", "http://localhost:8007"),
-            "passport": os.getenv("PASSPORT_SERVICE_URL", "http://localhost:8008"),
+            "matching": os.getenv("MATCHING_SERVICE_URL", "http://localhost:5101"),
+            "bias": os.getenv("BIAS_SERVICE_URL", "http://localhost:5102"),
+            "skill": os.getenv("SKILL_SERVICE_URL", "http://localhost:5103"),
+            "ats": os.getenv("ATS_SERVICE_URL", "http://localhost:5104"),
+            "github": os.getenv("GITHUB_SERVICE_URL", "http://localhost:5106"),
+            "leetcode": os.getenv("LEETCODE_SERVICE_URL", "http://localhost:5108"),
+            "linkedin": os.getenv("LINKEDIN_SERVICE_URL", "http://localhost:5107"),
+            "passport": os.getenv("PASSPORT_SERVICE_URL", "http://localhost:8012"),
             "job_description": os.getenv("JOB_DESCRIPTION_SERVICE_URL", "http://localhost:8009"),
-            "codeforces": os.getenv("CODEFORCES_SERVICE_URL", "http://localhost:8011"),
+            "codeforces": os.getenv("CODEFORCES_SERVICE_URL", "http://localhost:5109"),
         }
     
     async def close(self):
@@ -122,6 +122,12 @@ class AgentClient:
                     }
                 import asyncio
                 await asyncio.sleep(2 ** attempt)  # exponential backoff
+        
+        return {
+            "success": False,
+            "error": "Unknown failure in call_agent",
+            "status_code": 500
+        }
     
     async def run_ats(
         self,
@@ -235,7 +241,7 @@ class AgentClient:
         Run the complete pipeline with all agents in the requested order:
         ATS -> GitHub -> Coding Platforms -> LinkedIn -> Matching -> Bias -> Passport
         """
-        results = {
+        results: Dict[str, Any] = {
             "pipeline_id": f"PIPE-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}",
             "started_at": datetime.utcnow().isoformat(),
             "agents": {},

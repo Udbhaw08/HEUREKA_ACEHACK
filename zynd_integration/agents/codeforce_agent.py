@@ -60,7 +60,9 @@ def build_agent() -> ZyndAIAgent:
 
 def attach_handler(agent: ZyndAIAgent) -> None:
     def handler(message: AgentMessage, topic: str):
+        print(f"\n[codeforces] 📬 Received Message ID: {message.message_id}")
         payload = parse_json_content(message.content)
+        print(f"[codeforces] 🔍 Payload: {payload}")
         
         try:
             from scraper.codeforce_tool import analyze_codeforces_profile # type: ignore
@@ -73,8 +75,9 @@ def attach_handler(agent: ZyndAIAgent) -> None:
                 
             if not handle:
                 result = {"error": "Handle or codeforces_url required", "success": False}
+                print("[codeforces] ⚠️ Error: Handle required")
             else:
-                print(f"[codeforces] Analyzing user: {handle}")
+                print(f"[codeforces] 🚀 Analyzing Profile: {handle}")
                 # Reusing existing tool logic
                 cf_data = analyze_codeforces_profile(handle)
                 
@@ -88,14 +91,16 @@ def attach_handler(agent: ZyndAIAgent) -> None:
                     "top_skills": cf_data.get("top_skills", []),
                     "top_language": cf_data.get("top_language")
                 }
+                print(f"[codeforces] ✅ Analysis Complete for {handle}")
         except Exception as e:
             import traceback
-            print(f"[codeforces] Error in handler: {str(e)}")
+            print(f"[codeforces] ❌ Error in handler: {str(e)}")
             traceback.print_exc()
             result = {"error": str(e), "agent": "codeforces"}
 
         # Sync callers wait on this
         agent.set_response(message.message_id, dump_json(result))
+        print(f"[codeforces] 📤 Sent Result for {message.message_id}\n")
 
     agent.add_message_handler(handler)
 

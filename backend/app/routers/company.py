@@ -1,16 +1,22 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from datetime import datetime
+from typing import Optional, Dict, Any, List
 from app.database import get_db
 from app.models import Job, Application, Candidate, Credential, AgentRun, ReviewCase, Company, Blacklist
 from app.agents.jd_bias import JobBiasAgent
 from app.agents.job_extraction import JobExtractionAgent
 from sqlalchemy import select, func
 from app.agent_client import AgentClient
+from app.audit import log_event
+import logging
+
+# Configure logging
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/company", tags=["company"])
 
-async def call_match_agent(payload: dict):
+async def call_match_agent(payload: dict) -> Dict[str, Any]:
     """Helper to call matching agent service"""
     client = AgentClient()
     res = await client.match_candidate(
@@ -91,16 +97,25 @@ async def create_job(payload: dict, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Missing required fields")
     
     # ensure company exists to avoid foreign key violation
-    q_comp = await db.execute(select(Company).where(Company.id == company_id))
-    company = q_comp.scalar_one_or_none()
-    if not company:
-        company = Company(
-            id=company_id,
-            name=f"Company {company_id}",
-            email=f"contact@{company_id}.com"
-        )
-        db.add(company)
-        await db.flush()
+    try:
+        q_comp = await db.execute(select(Company).where(Company.id == company_id))
+        company = q_comp.scalar_one_or_none()
+        if not company:
+            company = Company(
+                id=company_id,
+                name=f"Company {company_id}",
+                email=f"contact@{company_id}.com"
+            )
+            db.add(company)
+            await db.flush()
+    except Exception as e:
+        # If it failed due to concurrency, we don't care, as long as it exists now
+        logger.warning(f"Company {company_id} creation conflict or error: {e}")
+        await db.rollback()
+        q_comp = await db.execute(select(Company).where(Company.id == company_id))
+        company = q_comp.scalar_one_or_none()
+        if not company:
+            raise HTTPException(status_code=500, detail="Failed to ensure company existence")
     
     # 1. AI BIAS AUDIT (Stage 0)
     # Using JobBiasAgent instead of hardcoded keywords
@@ -210,7 +225,13 @@ async def run_matching(company_id: str, job_id: int, db: AsyncSession = Depends(
         cred = qc.scalars().first()
         if not cred:
             continue
-        
+            
+        # Also need candidate for anon_id
+        q_cand = await db.execute(select(Candidate).where(Candidate.id == a.candidate_id))
+        candidate_obj = q_cand.scalar_one_or_none()
+        if not candidate_obj:
+            continue
+            
         # Transform credential to match Matching Agent's expected format
         credential = cred.credential_json.copy()
         
@@ -230,8 +251,9 @@ async def run_matching(company_id: str, job_id: int, db: AsyncSession = Depends(
         
         # 2. Ensure identity field exists
         if "identity" not in credential:
+            # Note: candidate was undefined, now using candidate_obj
             credential["identity"] = {
-                "anon_id": cand.anon_id,
+                "anon_id": candidate_obj.anon_id,
                 "public_links": []
             }
         
@@ -255,7 +277,7 @@ async def run_matching(company_id: str, job_id: int, db: AsyncSession = Depends(
         }
         try:
             print(f"[DEBUG] Calling matching agent for app_id: {a.id}")
-            res = await call_match_agent(payload)
+            res: Dict[str, Any] = await call_match_agent(payload)
             print(f"[DEBUG] Matching agent result: {res}")
             score = int(res.get("match_score", res.get("output", {}).get("match_score", 0)) or 0)
             breakdown = res.get("breakdown") or res.get("output", {}).get("breakdown")

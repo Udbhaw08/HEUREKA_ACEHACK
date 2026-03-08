@@ -225,3 +225,14 @@ class ReviewCase(Base):
 
     # Relationships
     application = relationship("Application", back_populates="review_cases")
+
+
+class AuditLog(Base):
+    """Audit log model for tracking system events"""
+    __tablename__ = "audit_logs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    actor = Column(String(100), nullable=False)
+    action = Column(String(100), nullable=False)
+    meta = Column(JSONB)
+    created_at = Column(DateTime, default=datetime.utcnow)
