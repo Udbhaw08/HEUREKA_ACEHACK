@@ -1,0 +1,54 @@
+{
+  "id": "ae194f47-b19e-4949-a8fa-ae52bc19126f",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qSH8FaoxM8kJ2KsggrmZ2QLZHtfG7Rf86W3ixTR3S",
+  "did": {
+    "id": "urn:97b2801b-5984-42e2-9c9b-7cb05a7ec226",
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
+      "https://schema.iden3.io/core/jsonld/auth.jsonld"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "AuthBJJCredential"
+    ],
+    "credentialSubject": {
+      "x": "15909600626419144261234529360020013496210565788254492775959020864503302935359",
+      "y": "11162334413499859314224833896578403156611967945576435912922741392468288159930",
+      "type": "AuthBJJCredential"
+    },
+    "issuer": "did:polygonid:polygon:amoy:2qSH8FaoxM8kJ2KsggrmZ2QLZHtfG7Rf86W3ixTR3S",
+    "credentialSchema": {
+      "id": "https://schema.iden3.io/core/json/auth.json",
+      "type": "JsonSchema2023"
+    },
+    "credentialStatus": {
+      "id": "https://rhs-staging.polygonid.me/node?state=ce4f6deeee303bacd5b1c16654bace5285cbaa53a9674d8d1353c3d93a0ec011",
+      "type": "Iden3ReverseSparseMerkleTreeProof",
+      "revocationNonce": 0
+    },
+    "issuanceDate": "2026-02-21T19:11:14.863Z",
+    "proof": [
+      {
+        "issuerData": {
+          "id": "did:polygonid:polygon:amoy:2qSH8FaoxM8kJ2KsggrmZ2QLZHtfG7Rf86W3ixTR3S",
+          "state": {
+            "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
+            "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+            "claimsTreeRoot": "d6dc770d48b33fa896417b20de437d53f9866b1fe29265004d708b79a6a23322",
+            "value": "ce4f6deeee303bacd5b1c16654bace5285cbaa53a9674d8d1353c3d93a0ec011"
+          }
+        },
+        "type": "Iden3SparseMerkleTreeProof",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003f53c55d8b1b14e9b428461b3d7c4ea86a6df33cd8b339c5844025fccc832c23ba409f62f66e73ac183deb5ca29d18db87c44208bdbec75020c136a04aa8ad180000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "mtp": {
+          "existence": true,
+          "siblings": []
+        }
+      }
+    ]
+  },
+  "name": "LinkedIn Agent",
+  "description": "Parses LinkedIn profile PDFs to extract work history and verified skills.",
+  "seed": "HZtr3sIbt6N3buEjzvYTzKQyvmzt4FCpOXiqYS4GA/Y="
+}

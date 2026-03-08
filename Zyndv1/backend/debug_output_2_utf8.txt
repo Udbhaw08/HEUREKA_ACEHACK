@@ -1,0 +1,580 @@
+﻿
+=== STEP 1: ATS ANALYSIS ===
+ATS Success: True
+ATS Data: {
+  "action": "OK",
+  "status": "OK",
+  "fraud_detected": false,
+  "needs_review": false,
+  "reason": null,
+  "severity": "none",
+  "flags": [],
+  "analysis": {
+    "realtime_checks": {
+      "white_text_count": 0,
+      "bot_detected": false
+    },
+    "deep_analysis": {
+      "source": "ats_resume_pdf",
+      "extraction_method": "agentic_narrative_validation",
+      "timestamp": "2026-02-03T08:45:17Z",
+      "agent_metadata": {
+        "agent": "ats_evidence_agent",
+        "version": "2026.2",
+        "framework": "antigravity-compatible",
+        "extraction_time_seconds": 17.12,
+        "deep_check_enabled": true
+      },
+      "identity": {
+        "name": "Unknown",
+        "public_links": []
+      },
+      "experience": [
+        {
+          "company": "ABC Corporation",
+          "role": "Software Engineer",
+          "timeframe": "2020-2022",
+          "claims": [
+            {
+              "action": "Designed and developed multiple features for a web application using React and Node.js.",
+              "technology": [
+                "React",
+                "Node.js"
+              ],
+              "outcome": "Improved application performance by 30%.",
+              "evidence_strength": "high"
+            },
+            {
+              "action": "Collaborated with cross-functional teams to implement new business requirements.",
+              "technology": [
+                "Jira",
+                "Agile"
+              ],
+              "outcome": "Reduced project timelines by 25%.",
+              "evidence_strength": "medium"
+            }
+          ]
+        },
+        {
+          "company": "XYZ Startups",
+          "role": "Data Scientist",
+          "timeframe": "2018-2020",
+          "claims": [
+            {
+              "action": "Developed and deployed machine learning models using scikit-learn and TensorFlow.",
+              "technology": [
+                "scikit-learn",
+                "TensorFlow"
+              ],
+              "outcome": "Improved model accuracy by 20%.",
+              "evidence_strength": "weak"
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "project_name": "Web Application",
+          "claims": [
+            {
+              "description": "A web application built using React and Node.js.",
+              "evidence_strength": "high"
+            }
+          ]
+        },
+        {
+          "project_name": "Business Intelligence Dashboard",
+          "claims": [
+            {
+              "description": "A data visualization dashboard built using Tableau.",
+              "evidence_strength": "medium"
+            }
+          ]
+        }
+      ],
+      "skills": [
+        {
+          "skill": "Python"
+        },
+        {
+          "skill": "JavaScript"
+        },
+        {
+          "skill": "Agile methodologies",
+          "contextualized": true,
+          "used_in": [
+            "experience"
+          ]
+        },
+        {
+          "skill": "Data visualization tools (Tableau)"
+        },
+        {
+          "skill": "Machine learning libraries (scikit-learn, TensorFlow)"
+        }
+      ],
+      "semantic_flags": [
+        {
+          "type": "timeline_overlap",
+          "issue": "Multiple full-time jobs at the same time (2018-2020 and 2020-2022) overlap.",
+          "severity": "medium"
+        },
+        {
+          "type": "tech_timeline",
+          "issue": "TensorFlow is mentioned before its release year (2015).",
+          "severity": "high"
+        }
+      ]
+    }
+  },
+  "manipulation_signals": null,
+  "evidence": {}
+}
+
+=== STEP 2: GITHUB SCRAPER ===
+GitHub Success: True
+GitHub Data: {
+  "username": "Udbhaw08",
+  "repos": [
+    {
+      "repo_name": "WebDev",
+      "url": "https://github.com/Udbhaw08/WebDev",
+      "language": "JavaScript",
+      "description": "Starting The Web Development Learning Journey  ",
+      "best_repo_score": 73.5,
+      "category": "Primary Evidence",
+      "why_selected": [
+        "Single-author project with full ownership",
+        "Solo-built project",
+        "Multi-module architecture",
+        "Consistent development over time",
+        "Has project documentation"
+      ],
+      "disclaimers": [],
+      "signals": {
+        "ownership": 100,
+        "ownership_breakdown": {
+          "authorship": 35,
+          "commit_dominance": 35,
+          "originality": 30
+        },
+        "engineering_depth": 45,
+        "documentation": 50,
+        "maturity": "iterative",
+        "maturity_score": 100
+      },
+      "details": {
+        "size_kb": 14436,
+        "stars": 0,
+        "contributor_count": 1,
+        "is_primary_contributor": true,
+        "has_tests": false,
+        "has_ci_cd": false,
+        "commit_analysis": {
+          "total_commits": 62,
+          "author_commits": 62,
+          "commit_ratio": 1.0,
+          "days_span": 156,
+          "unique_commit_days": 19,
+          "first_commit": "2025-07-17T00:33:43+00:00",
+          "last_commit": "2025-12-20T11:44:47+00:00",
+          "is_iterative": true
+        }
+      }
+    },
+    {
+      "repo_name": "Kavach",
+      "url": "https://github.com/Udbhaw08/Kavach",
+      "language": "Python",
+      "description": null,
+      "best_repo_score": 72.5,
+      "category": "Primary Evidence",
+      "why_selected": [
+        "Single-author project with full ownership",
+        "Solo-built project",
+        "Multi-module architecture",
+        "Consistent development over time",
+        "Has project documentation"
+      ],
+      "disclaimers": [],
+      "signals": {
+        "ownership": 100,
+        "ownership_breakdown": {
+          "authorship": 35,
+          "commit_dominance": 35,
+          "originality": 30
+        },
+        "engineering_depth": 45,
+        "documentation": 55,
+        "maturity": "iterative",
+        "maturity_score": 90
+      },
+      "details": {
+        "size_kb": 2310,
+        "stars": 0,
+        "contributor_count": 1,
+        "is_primary_contributor": true,
+        "has_tests": false,
+        "has_ci_cd": false,
+        "commit_analysis": {
+          "total_commits": 33,
+          "author_commits": 33,
+          "commit_ratio": 1.0,
+          "days_span": 45,
+          "unique_commit_days": 16,
+          "first_commit": "2025-12-09T07:29:46+00:00",
+          "last_commit": "2026-01-23T22:23:15+00:00",
+          "is_iterative": true
+        }
+      }
+    },
+    {
+      "repo_name": "Heureka-OpticShield",
+      "url": "https://github.com/Udbhaw08/Heureka-OpticShield",
+      "language": "CSS",
+      "description": null,
+      "best_repo_score": 62.0,
+      "category": "Primary Evidence",
+      "why_selected": [
+        "Primary contributor with strong ownership",
+        "Organized folder structure",
+        "Solo-built project",
+        "Well-documented with clear intent"
+      ],
+      "disclaimers": [
+        "High structural clarity, limited lifecycle evidence"
+      ],
+      "signals": {
+        "ownership": 70,
+        "ownership_breakdown": {
+          "authorship": 35,
+          "commit_dominance": 20,
+          "originality": 15
+        },
+        "engineering_depth": 70,
+        "documentation": 80,
+        "maturity": "one-shot",
+        "maturity_score": 20
+      },
+      "details": {
+        "size_kb": 50,
+        "stars": 0,
+        "contributor_count": 1,
+        "is_primary_contributor": true,
+        "has_tests": false,
+        "has_ci_cd": false,
+        "commit_analysis": {
+          "total_commits": 5,
+          "author_commits": 3,
+          "commit_ratio": 0.6,
+          "days_span": 0,
+          "unique_commit_days": 1,
+          "first_commit": "2026-01-16T09:21:04+00:00",
+          "last_commit": "2026-01-16T22:19:50+00:00",
+          "is_iterative": false
+        }
+      }
+    },
+    {
+      "repo_name": "testing",
+      "url": "https://github.com/Udbhaw08/testing",
+      "language": "JavaScript",
+      "description": null,
+      "best_repo_score": 53.5,
+      "category": "Supporting Evidence",
+      "why_selected": [
+        "Single-author project with full ownership",
+        "Organized folder structure",
+        "Solo-built project",
+        "Multi-module architecture"
+      ],
+      "disclaimers": [
+        "Single-session build, may be hackathon or experiment"
+      ],
+      "signals": {
+        "ownership": 100,
+        "ownership_breakdown": {
+          "authorship": 35,
+          "commit_dominance": 35,
+          "originality": 30
+        },
+        "engineering_depth": 45,
+        "documentation": 20,
+        "maturity": "one-shot",
+        "maturity_score": 30
+      },
+      "details": {
+        "size_kb": 47390,
+        "stars": 0,
+        "contributor_count": 1,
+        "is_primary_contributor": true,
+        "has_tests": false,
+        "has_ci_cd": false,
+        "commit_analysis": {
+          "total_commits": 9,
+          "author_commits": 9,
+          "commit_ratio": 1.0,
+          "days_span": 0,
+          "unique_commit_days": 1,
+          "first_commit": "2026-01-27T22:04:37+00:00",
+          "last_commit": "2026-01-27T22:41:04+00:00",
+          "is_iterative": false
+        }
+      }
+    },
+    {
+      "repo_name": "RescueTech",
+      "url": "https://github.com/Udbhaw08/RescueTech",
+      "language": "JavaScript",
+      "description": null,
+      "best_repo_score": 42.6,
+      "category": "Supporting Evidence",
+      "why_selected": [
+        "Meaningful contribution to project",
+        "Has project documentation"
+      ],
+      "disclaimers": [
+        "Single-session build, may be hackathon or experiment"
+      ],
+      "signals": {
+        "ownership": 57,
+        "ownership_breakdown": {
+          "authorship": 15,
+          "commit_dominance": 12,
+          "originality": 30
+        },
+        "engineering_depth": 25,
+        "documentation": 50,
+        "maturity": "one-shot",
+        "maturity_score": 40
+      },
+      "details": {
+        "size_kb": 502,
+        "stars": 0,
+        "contributor_count": 2,
+        "is_primary_contributor": false,
+        "has_tests": false,
+        "has_ci_cd": false,
+        "commit_analysis": {
+          "total_commits": 2,
+          "author_commits": 1,
+          "commit_ratio": 0.5,
+          "days_span": 231,
+          "unique_commit_days": 2,
+          "first_commit": "2025-05-03T07:20:32+00:00",
+          "last_commit": "2025-12-20T11:43:55+00:00",
+          "is_iterative": false
+        }
+      }
+    }
+  ],
+  "languages": {},
+  "commits": {
+    "score": 30,
+    "commits_last_30_days": 25,
+    "commits_last_year": 118,
+    "active_weeks_ratio": 0.23,
+    "max_gap_days": 114,
+    "patterns": [
+      "long_inactivity_gaps"
+    ],
+    "days_since_last_commit": 6
+  },
+  "frameworks": [
+    "JavaScript",
+    "Python",
+    "TypeScript"
+  ],
+  "top_projects": [
+    {
+      "repo_name": "WebDev",
+      "url": "https://github.com/Udbhaw08/WebDev",
+      "language": "JavaScript",
+      "description": "Starting The Web Development Learning Journey  ",
+      "best_repo_score": 73.5,
+      "category": "Primary Evidence",
+      "why_selected": [
+        "Single-author project with full ownership",
+        "Solo-built project",
+        "Multi-module architecture",
+        "Consistent development over time",
+        "Has project documentation"
+      ],
+      "disclaimers": [],
+      "signals": {
+        "ownership": 100,
+        "ownership_breakdown": {
+          "authorship": 35,
+          "commit_dominance": 35,
+          "originality": 30
+        },
+        "engineering_depth": 45,
+        "documentation": 50,
+        "maturity": "iterative",
+        "maturity_score": 100
+      },
+      "details": {
+        "size_kb": 14436,
+        "stars": 0,
+        "contributor_count": 1,
+        "is_primary_contributor": true,
+        "has_tests": false,
+        "has_ci_cd": false,
+        "commit_analysis": {
+          "total_commits": 62,
+          "author_commits": 62,
+          "commit_ratio": 1.0,
+          "days_span": 156,
+          "unique_commit_days": 19,
+          "first_commit": "2025-07-17T00:33:43+00:00",
+          "last_commit": "2025-12-20T11:44:47+00:00",
+          "is_iterative": true
+        }
+      }
+    },
+    {
+      "repo_name": "Kavach",
+      "url": "https://github.com/Udbhaw08/Kavach",
+      "language": "Python",
+      "description": null,
+      "best_repo_score": 72.5,
+      "category": "Primary Evidence",
+      "why_selected": [
+        "Single-author project with full ownership",
+        "Solo-built project",
+        "Multi-module architecture",
+        "Consistent development over time",
+        "Has project documentation"
+      ],
+      "disclaimers": [],
+      "signals": {
+        "ownership": 100,
+        "ownership_breakdown": {
+          "authorship": 35,
+          "commit_dominance": 35,
+          "originality": 30
+        },
+        "engineering_depth": 45,
+        "documentation": 55,
+        "maturity": "iterative",
+        "maturity_score": 90
+      },
+      "details": {
+        "size_kb": 2310,
+        "stars": 0,
+        "contributor_count": 1,
+        "is_primary_contributor": true,
+        "has_tests": false,
+        "has_ci_cd": false,
+        "commit_analysis": {
+          "total_commits": 33,
+          "author_commits": 33,
+          "commit_ratio": 1.0,
+          "days_span": 45,
+          "unique_commit_days": 16,
+          "first_commit": "2025-12-09T07:29:46+00:00",
+          "last_commit": "2026-01-23T22:23:15+00:00",
+          "is_iterative": true
+        }
+      }
+    },
+    {
+      "repo_name": "Heureka-OpticShield",
+      "url": "https://github.com/Udbhaw08/Heureka-OpticShield",
+      "language": "CSS",
+      "description": null,
+      "best_repo_score": 62.0,
+      "category": "Primary Evidence",
+      "why_selected": [
+        "Primary contributor with strong ownership",
+        "Organized folder structure",
+        "Solo-built project",
+        "Well-documented with clear intent"
+      ],
+      "disclaimers": [
+        "High structural clarity, limited lifecycle evidence"
+      ],
+      "signals": {
+        "ownership": 70,
+        "ownership_breakdown": {
+          "authorship": 35,
+          "commit_dominance": 20,
+          "originality": 15
+        },
+        "engineering_depth": 70,
+        "documentation": 80,
+        "maturity": "one-shot",
+        "maturity_score": 20
+      },
+      "details": {
+        "size_kb": 50,
+        "stars": 0,
+        "contributor_count": 1,
+        "is_primary_contributor": true,
+        "has_tests": false,
+        "has_ci_cd": false,
+        "commit_analysis": {
+          "total_commits": 5,
+          "author_commits": 3,
+          "commit_ratio": 0.6,
+          "days_span": 0,
+          "unique_commit_days": 1,
+          "first_commit": "2026-01-16T09:21:04+00:00",
+          "last_commit": "2026-01-16T22:19:50+00:00",
+          "is_iterative": false
+        }
+      }
+    }
+  ],
+  "activity_score": 0
+}
+
+=== STEP 3: SKILL VERIFICATION ===
+Skill Success: True
+Skill Data (Extracted): {
+  "credential_id": "cred_39977e16",
+  "evaluation_id": "999",
+  "verified_skills": {
+    "core": [
+      "JavaScript",
+      "Python",
+      "TypeScript",
+      "CSS"
+    ],
+    "frameworks": [],
+    "infrastructure": [],
+    "tools": []
+  },
+  "skill_confidence": 0,
+  "confidence_explanation": "Low confidence. Relying primarily on self-attested claims without code backing. Targeted testing recommended.",
+  "signal_strength": "none",
+  "credential_status": "PENDING_TEST",
+  "test_required": true,
+  "next_stage": "conditional_test",
+  "evidence_summary": {
+    "signal_count": 5,
+    "conflict_flags": []
+  }
+}
+
+=== STEP 4: MATCHING AGENT ===
+Sending Match Payload (Job Reqs): {
+  "core": [
+    "Python",
+    "FastAPI",
+    "PostgreSQL"
+  ],
+  "frameworks": [
+    "React",
+    "Docker"
+  ]
+}
+Matching Success: True
+Matching Data: {
+  "match_score": 17,
+  "breakdown": {
+    "core_score": 33,
+    "framework_score": 0,
+    "confidence_signal": 0
+  }
+}

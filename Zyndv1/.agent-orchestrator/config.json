@@ -1,0 +1,54 @@
+{
+  "id": "780a1aa8-f8f0-40e2-974f-5aa29dbe0c28",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qVPGxtsz69bsoTLQoTgB2w5Nf2vxdpkXey9rBAmAk",
+  "did": {
+    "id": "urn:ba2e4bc3-0acd-4866-895d-9041a325af61",
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
+      "https://schema.iden3.io/core/jsonld/auth.jsonld"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "AuthBJJCredential"
+    ],
+    "credentialSubject": {
+      "x": "3701219960411199179864302769648002344349381076003721510532897777127734995240",
+      "y": "14152998751679449308125716313032772041369918016354889253309299508603819710829",
+      "type": "AuthBJJCredential"
+    },
+    "issuer": "did:polygonid:polygon:amoy:2qVPGxtsz69bsoTLQoTgB2w5Nf2vxdpkXey9rBAmAk",
+    "credentialSchema": {
+      "id": "https://schema.iden3.io/core/json/auth.json",
+      "type": "JsonSchema2023"
+    },
+    "credentialStatus": {
+      "id": "https://rhs-staging.polygonid.me/node?state=c38cf0f1e974a70d20e23a5984769b4e8fc47c269789f1e786de14945983da05",
+      "type": "Iden3ReverseSparseMerkleTreeProof",
+      "revocationNonce": 0
+    },
+    "issuanceDate": "2026-02-21T19:11:02.915Z",
+    "proof": [
+      {
+        "issuerData": {
+          "id": "did:polygonid:polygon:amoy:2qVPGxtsz69bsoTLQoTgB2w5Nf2vxdpkXey9rBAmAk",
+          "state": {
+            "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
+            "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+            "claimsTreeRoot": "bd7faf7e59f6e1979bff8536f3b486d8bca86c42e5a01058221581fcf539601c",
+            "value": "c38cf0f1e974a70d20e23a5984769b4e8fc47c269789f1e786de14945983da05"
+          }
+        },
+        "type": "Iden3SparseMerkleTreeProof",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002869ad094a0f231414ff7b1373308d3b1360f2c657e418e141fe0a6cf6d02e086dd9acfa5f53137e03c3a72ceb68aba3de98e1b9a9d767eafedf39343c504a1f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "mtp": {
+          "existence": true,
+          "siblings": []
+        }
+      }
+    ]
+  },
+  "name": "FairHiring Orchestrator",
+  "description": "Orchestrates FairHiring network and routes tasks to specialized Zynd agents.",
+  "seed": "w56t7rlTZCXczGLo93ddC5X+01T12/0eF0GXlbdiu0I="
+}

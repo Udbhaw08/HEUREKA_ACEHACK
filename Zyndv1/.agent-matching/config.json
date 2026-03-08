@@ -1,0 +1,54 @@
+{
+  "id": "7c21c3ff-b842-43c2-b063-1dea07c1d3c1",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qRbGJwaqwVPv8qrRuKigw2vZzZWvNxsh6xGEKYCKP",
+  "did": {
+    "id": "urn:0945884e-9970-405d-ad36-c6fba40e1d11",
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
+      "https://schema.iden3.io/core/jsonld/auth.jsonld"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "AuthBJJCredential"
+    ],
+    "credentialSubject": {
+      "x": "7993606793874861385095392515442019904744832417983874479667930537783101768781",
+      "y": "5276617088161010930690001516240807165183075116830687405163457679423726687082",
+      "type": "AuthBJJCredential"
+    },
+    "issuer": "did:polygonid:polygon:amoy:2qRbGJwaqwVPv8qrRuKigw2vZzZWvNxsh6xGEKYCKP",
+    "credentialSchema": {
+      "id": "https://schema.iden3.io/core/json/auth.json",
+      "type": "JsonSchema2023"
+    },
+    "credentialStatus": {
+      "id": "https://rhs-staging.polygonid.me/node?state=dfb628944321181f54f122abc77dc5756485c8adfa5891c38d9891f45e679424",
+      "type": "Iden3ReverseSparseMerkleTreeProof",
+      "revocationNonce": 0
+    },
+    "issuanceDate": "2026-02-21T19:11:03.078Z",
+    "proof": [
+      {
+        "issuerData": {
+          "id": "did:polygonid:polygon:amoy:2qRbGJwaqwVPv8qrRuKigw2vZzZWvNxsh6xGEKYCKP",
+          "state": {
+            "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
+            "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+            "claimsTreeRoot": "ced862f6a42931b04328fce67f5d01a20ad211cd79da226cbcbf620ad523551c",
+            "value": "dfb628944321181f54f122abc77dc5756485c8adfa5891c38d9891f45e679424"
+          }
+        },
+        "type": "Iden3SparseMerkleTreeProof",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004d44c86c38799ceb1d2e19b46212477eee6849c90b605109105c34dc9a38ac116a1308d79da1369d6143b0bcafc9bbbaee1cc1367b8c97c2301211959d75aa0b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "mtp": {
+          "existence": true,
+          "siblings": []
+        }
+      }
+    ]
+  },
+  "name": "Matching Agent",
+  "description": "Matches verified candidate skill signals to job requirements with transparency.",
+  "seed": "VrKi0x9vbdhSl4aNwk0vsuAJXM7tlXfIth3GTTVtzLE="
+}

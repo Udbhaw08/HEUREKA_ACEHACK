@@ -1,0 +1,54 @@
+{
+  "id": "b340a463-fff0-4588-b7a4-27d1c4df01b4",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qTP8or7evj8h8hzkr3Y1bQkNoFDK7AFKauiNPJj4G",
+  "did": {
+    "id": "urn:9bf93b1d-6272-4c23-b740-c8b7275d99c3",
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
+      "https://schema.iden3.io/core/jsonld/auth.jsonld"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "AuthBJJCredential"
+    ],
+    "credentialSubject": {
+      "x": "2553638843074547036302463025187193053677730882234777139262380938904167541937",
+      "y": "13670864426103960871979558015190197971857151357025466351435362775596624086977",
+      "type": "AuthBJJCredential"
+    },
+    "issuer": "did:polygonid:polygon:amoy:2qTP8or7evj8h8hzkr3Y1bQkNoFDK7AFKauiNPJj4G",
+    "credentialSchema": {
+      "id": "https://schema.iden3.io/core/json/auth.json",
+      "type": "JsonSchema2023"
+    },
+    "credentialStatus": {
+      "id": "https://rhs-staging.polygonid.me/node?state=5ef4c5fc65488b1aaccbe901bca4a16e6c20f74f294fee901f99ed95cd60071a",
+      "type": "Iden3ReverseSparseMerkleTreeProof",
+      "revocationNonce": 0
+    },
+    "issuanceDate": "2026-02-21T19:11:10.921Z",
+    "proof": [
+      {
+        "issuerData": {
+          "id": "did:polygonid:polygon:amoy:2qTP8or7evj8h8hzkr3Y1bQkNoFDK7AFKauiNPJj4G",
+          "state": {
+            "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
+            "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+            "claimsTreeRoot": "973bd3c680e89402cbc3413b8cebc72339c1d2771670dedd273cd5fd24a83105",
+            "value": "5ef4c5fc65488b1aaccbe901bca4a16e6c20f74f294fee901f99ed95cd60071a"
+          }
+        },
+        "type": "Iden3SparseMerkleTreeProof",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b16c40aa8586373bd4165dd7970d89ae1b0c586deec5b94cad379e08f14ea505c1874150305d737bbe62403fb584290fea11bdf36df77b3dc3f52a25606f391e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "mtp": {
+          "existence": true,
+          "siblings": []
+        }
+      }
+    ]
+  },
+  "name": "Passport Agent",
+  "description": "Issues/returns verifiable hiring passport payloads (credential packaging for downstream trust).",
+  "seed": "0QuNH82HcFL3ugF1S6u8BVeebSnbVXwtAXKyRrp/HsU="
+}

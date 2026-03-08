@@ -1,0 +1,54 @@
+{
+  "id": "235d2f59-7eb0-4483-a5ed-af31d62cfaa3",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qbfar4JY8rwK16sQWMpBaBvcRB7p3wX21jVtHkyaU",
+  "did": {
+    "id": "urn:34e6448a-8b12-4950-a766-0fc9357b6922",
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
+      "https://schema.iden3.io/core/jsonld/auth.jsonld"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "AuthBJJCredential"
+    ],
+    "credentialSubject": {
+      "x": "14614564509217070998543186849739422142818913791008340463714468800209475704721",
+      "y": "3744186750735492760473607037401998301986493211084873540541204414955143083748",
+      "type": "AuthBJJCredential"
+    },
+    "issuer": "did:polygonid:polygon:amoy:2qbfar4JY8rwK16sQWMpBaBvcRB7p3wX21jVtHkyaU",
+    "credentialSchema": {
+      "id": "https://schema.iden3.io/core/json/auth.json",
+      "type": "JsonSchema2023"
+    },
+    "credentialStatus": {
+      "id": "https://rhs-staging.polygonid.me/node?state=36eb1bc6f2ff037a062164fb58c22ac5f6bbdbf4bbb6b61ccd5dd58e0f002f08",
+      "type": "Iden3ReverseSparseMerkleTreeProof",
+      "revocationNonce": 0
+    },
+    "issuanceDate": "2026-02-21T19:11:07.089Z",
+    "proof": [
+      {
+        "issuerData": {
+          "id": "did:polygonid:polygon:amoy:2qbfar4JY8rwK16sQWMpBaBvcRB7p3wX21jVtHkyaU",
+          "state": {
+            "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
+            "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+            "claimsTreeRoot": "f3b679be298899e153e230b4c483eeff2c77f02e9b3e937e9a46e240c60fdd11",
+            "value": "36eb1bc6f2ff037a062164fb58c22ac5f6bbdbf4bbb6b61ccd5dd58e0f002f08"
+          }
+        },
+        "type": "Iden3SparseMerkleTreeProof",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009197b5d8534ce89f9cb9cfd6be01c09b1eca898d4ddfd4ca1d290cace58c4f20e4b6e8d4260654dd02798c57e8d95b1c790159d248527ccec7976240752247080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "mtp": {
+          "existence": true,
+          "siblings": []
+        }
+      }
+    ]
+  },
+  "name": "Skill Agent",
+  "description": "Verifies developer skills from evidence and produces structured skill signals and confidence.",
+  "seed": "kMG2EjGtTAHVZokVwh9FAPIaKaDe2RsAIJ+hUGhdIMY="
+}
