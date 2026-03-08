@@ -1,8 +1,8 @@
 {
-  "id": "58f6a268-91f5-4b29-8934-514358a50342",
-  "didIdentifier": "did:polygonid:polygon:amoy:2qU8c9kvSDwgbYxkLAK9GqKiU78tCfXb7rUutArGLB",
+  "id": "e9c3c938-7fc9-449c-b4b3-79b1a4ce472e",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qWurASnvNBnLb2HYQJrga5cfz12of7RHCHEP1FsNM",
   "did": {
-    "id": "urn:b368a76c-9907-4ae6-a6ef-1c9f426a9326",
+    "id": "urn:663b1f01-14db-4d44-82e0-8bfe79839161",
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
       "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
@@ -13,34 +13,34 @@
       "AuthBJJCredential"
     ],
     "credentialSubject": {
-      "x": "2170838850506072765004362656296290716190702570494774118209834707242986283767",
-      "y": "3472326186945631030801040832936973544233617005940422046200503563437050093384",
+      "x": "2965309832323669781662297165248780545316507972373001764175696811501624937117",
+      "y": "15677189801319201450413849518261746004752603554297335827615970519664953155691",
       "type": "AuthBJJCredential"
     },
-    "issuer": "did:polygonid:polygon:amoy:2qU8c9kvSDwgbYxkLAK9GqKiU78tCfXb7rUutArGLB",
+    "issuer": "did:polygonid:polygon:amoy:2qWurASnvNBnLb2HYQJrga5cfz12of7RHCHEP1FsNM",
     "credentialSchema": {
       "id": "https://schema.iden3.io/core/json/auth.json",
       "type": "JsonSchema2023"
     },
     "credentialStatus": {
-      "id": "https://rhs-staging.polygonid.me/node?state=74913335a6590dae1e7393677de29e737a951eaa7e56a18647fb1ad6b5ca042a",
+      "id": "https://rhs-staging.polygonid.me/node?state=52ee1a6d7b964aa2ecb0bdd09ce0a77f1eea523c56a37b7bff4c731d20f0c81a",
       "type": "Iden3ReverseSparseMerkleTreeProof",
       "revocationNonce": 0
     },
-    "issuanceDate": "2026-03-08T05:14:02.861Z",
+    "issuanceDate": "2026-03-08T04:57:25.020Z",
     "proof": [
       {
         "issuerData": {
-          "id": "did:polygonid:polygon:amoy:2qU8c9kvSDwgbYxkLAK9GqKiU78tCfXb7rUutArGLB",
+          "id": "did:polygonid:polygon:amoy:2qWurASnvNBnLb2HYQJrga5cfz12of7RHCHEP1FsNM",
           "state": {
             "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
             "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
-            "claimsTreeRoot": "9b9be0ee6e5781a1212f5151705f4dd2734ffb859a34db6cc2dd803bedae2411",
-            "value": "74913335a6590dae1e7393677de29e737a951eaa7e56a18647fb1ad6b5ca042a"
+            "claimsTreeRoot": "f1585100779fcfa35555e441e25148968520e789143d4f1fb14cc4aab431741e",
+            "value": "52ee1a6d7b964aa2ecb0bdd09ce0a77f1eea523c56a37b7bff4c731d20f0c81a"
           }
         },
         "type": "Iden3SparseMerkleTreeProof",
-        "coreClaim": "cca3371a6cb1b715004407e325bd993c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f7a208e28b6c347fe25575d0e18df4096e17c003557239b6fc941b2ab8a6cc0448df1e78c8e33ef247f638450b1623e0faf875f8a49665337a9e847f5844ad070000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009dca9ee9d687bb0df3ab6ee7d82f36e7c6f1f2d395d7263dbe3dffaf4e4e8e066b602cec66a2f85346ab7318c5ea4ad4505680e72fec8c9fbca28f5d98f9a8220000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
         "mtp": {
           "existence": true,
           "siblings": []
@@ -50,5 +50,5 @@
   },
   "name": "LinkedIn Agent",
   "description": "Parses LinkedIn profile PDFs to extract work history and verified skills.",
-  "seed": "nE5fHrQbQxOX2Flnj7g+hI+sxXgHTXijadcS12/rVlQ="
+  "seed": "8GA0tI/hs8MPegzH/BsrEvQNW2lhBrUUJIbYqEmA6Zc="
 }

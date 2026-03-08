@@ -50,7 +50,7 @@ function Start-VisibleAgent {
 
 # 1. Backend (needs to run from backend/ so uvicorn finds app.main)
 Write-Host "Starting BACKEND API (8012)..."
-Start-Process powershell -ArgumentList "-NoExit", "-Command", "& { `$env:PYTHONPATH='$PROJECT_ROOT\backend;$PROJECT_ROOT'; `$env:USE_ZYND='1'; `$Host.UI.RawUI.WindowTitle = 'BACKEND API (8012)'; & '$PYTHON_CMD' -m uvicorn app.main:app --host 127.0.0.1 --port 8012 --log-level info }" -WorkingDirectory "$PROJECT_ROOT\backend"
+Start-Process powershell -ArgumentList "-NoExit", "-Command", "& { `$env:PYTHONPATH='$PROJECT_ROOT\backend;$PROJECT_ROOT'; `$env:USE_ZYND='1'; `$Host.UI.RawUI.WindowTitle = 'BACKEND API (8012)'; & '$PYTHON_CMD' -m uvicorn app.main:app --host 0.0.0.0 --port 8012 --log-level info }" -WorkingDirectory "$PROJECT_ROOT\backend"
 Start-Sleep -s 5
 
 # 2. Matching Agent

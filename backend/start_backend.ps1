@@ -30,4 +30,4 @@ Write-Host "API Documentation: http://localhost:8000/docs" -ForegroundColor Cyan
 Write-Host ""
 
 $env:PYTHONPATH = "$PSScriptRoot"
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8012
