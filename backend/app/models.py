@@ -69,9 +69,12 @@ class Candidate(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     anon_id = Column(String(50), unique=True, index=True, nullable=False)
+    # Auth0 subject ID (e.g. "auth0|abc123") — set for Auth0-registered users
+    auth0_id = Column(String(255), unique=True, index=True, nullable=True)
     email = Column(String(255), unique=True, index=True, nullable=False)
     name = Column(String(255), nullable=False)
-    password_hash = Column(String(255), nullable=False)
+    # Nullable — Auth0 users have no local password
+    password_hash = Column(String(255), nullable=True)
     gender = Column(String(50))
     college = Column(String(255))
     engineer_level = Column(String(50))

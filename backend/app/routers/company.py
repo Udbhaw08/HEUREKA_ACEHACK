@@ -358,15 +358,50 @@ async def review_queue(company_id: str, db: AsyncSession = Depends(get_db)):
     rows = q.all()
     out = []
     for rc, cand, app, job in rows:
+        # Fetch credential for enriched evidence data
+        cred_q = await db.execute(
+            select(Credential)
+            .where(Credential.application_id == rc.application_id)
+            .order_by(Credential.issued_at.desc())
+        )
+        cred = cred_q.scalars().first()
+        cred_json = cred.credential_json if cred else {}
+
+        # Extract verified skills from credential
+        derived = cred_json.get("derived", {}) if isinstance(cred_json, dict) else {}
+        verified_skills = derived.get("verified_skills", {})
+        
+        # Flatten skills for display
+        flat_skills = []
+        if isinstance(verified_skills, dict):
+            for tier, skills in verified_skills.items():
+                for s in skills:
+                    name = s.get("name", s) if isinstance(s, dict) else s
+                    flat_skills.append(name)
+        elif isinstance(verified_skills, list):
+            flat_skills = [s.get("name", s) if isinstance(s, dict) else s for s in verified_skills]
+
+        # Extract evidence signals from credential
+        evidence_data = cred_json.get("evidence", {}) if isinstance(cred_json, dict) else {}
+        evidence_sources = [k.upper() for k in evidence_data.keys() if evidence_data.get(k)]
+
         out.append({
             "id": rc.id,
             "application_id": rc.application_id,
             "job_id": rc.job_id,
+            "role": job.title,
             "candidate_anon_id": cand.anon_id,
             "severity": rc.severity,
             "reason": rc.reason,
             "status": rc.status,
             "created_at": rc.created_at.isoformat(),
+            "triggered_by": rc.triggered_by,
+            "evidence_json": rc.evidence,
+            "skills": flat_skills,
+            "evidence_sources": evidence_sources,
+            "confidence": derived.get("confidence", 0),
+            "match_score": derived.get("match_score", 0),
+            "feedback": app.feedback_json,
         })
     return out
 

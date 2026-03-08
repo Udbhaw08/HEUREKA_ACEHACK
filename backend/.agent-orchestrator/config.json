@@ -1,8 +1,8 @@
 {
-  "id": "acb5632d-5b73-4122-9e09-71a4108779fd",
-  "didIdentifier": "did:polygonid:polygon:amoy:2qWAyNn7RY8KGjwdEK9JoknaPP946rvG5iorKQqcHL",
+  "id": "d80f2526-3d18-479c-8817-f5ff1b35211f",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qTvPYGNyFd77S5QuwZGgvMSDrJ9gKvqwPAb2YxefL",
   "did": {
-    "id": "urn:75379523-0eb5-4e58-b20b-ee5ccfa1d9fd",
+    "id": "urn:3336693c-8fdd-4a11-b374-e272d0469767",
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
       "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
@@ -13,34 +13,34 @@
       "AuthBJJCredential"
     ],
     "credentialSubject": {
-      "x": "14157610632534388131479892510092045022625614637611864203613752862295824237975",
-      "y": "14444482923805648994884406010799906750233951642641915348849536979683414537589",
+      "x": "5056199840831312894987822332082002631225022791970947679188158354356373858995",
+      "y": "10218137803646974496511047775798435592261178991574544308019798878931528532653",
       "type": "AuthBJJCredential"
     },
-    "issuer": "did:polygonid:polygon:amoy:2qWAyNn7RY8KGjwdEK9JoknaPP946rvG5iorKQqcHL",
+    "issuer": "did:polygonid:polygon:amoy:2qTvPYGNyFd77S5QuwZGgvMSDrJ9gKvqwPAb2YxefL",
     "credentialSchema": {
       "id": "https://schema.iden3.io/core/json/auth.json",
       "type": "JsonSchema2023"
     },
     "credentialStatus": {
-      "id": "https://rhs-staging.polygonid.me/node?state=4d42c7fb778601fcbad523b6b4b1b0601ca798c040fe11a0b7fce312e596b52c",
+      "id": "https://rhs-staging.polygonid.me/node?state=a2cefb5d7f5469d20717c25e523fc3bb841d59ae3f6a6a68155c3e9fb07ff202",
       "type": "Iden3ReverseSparseMerkleTreeProof",
       "revocationNonce": 0
     },
-    "issuanceDate": "2026-02-14T08:09:09.259Z",
+    "issuanceDate": "2026-03-08T04:25:07.177Z",
     "proof": [
       {
         "issuerData": {
-          "id": "did:polygonid:polygon:amoy:2qWAyNn7RY8KGjwdEK9JoknaPP946rvG5iorKQqcHL",
+          "id": "did:polygonid:polygon:amoy:2qTvPYGNyFd77S5QuwZGgvMSDrJ9gKvqwPAb2YxefL",
           "state": {
             "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
             "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
-            "claimsTreeRoot": "6a7fc98ba5a824ba3c6d8beba0c371cf53cf13dce8079736ab929b16cb064a09",
-            "value": "4d42c7fb778601fcbad523b6b4b1b0601ca798c040fe11a0b7fce312e596b52c"
+            "claimsTreeRoot": "52fcd195084e01f2a3c01565b8a179b7da5055ffea44e039d0fdbf5f2ac28209",
+            "value": "a2cefb5d7f5469d20717c25e523fc3bb841d59ae3f6a6a68155c3e9fb07ff202"
           }
         },
         "type": "Iden3SparseMerkleTreeProof",
-        "coreClaim": "cca3371a6cb1b715004407e325bd993c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009785b79ea66270fd24cf402937f34f0b782ee15ee3155cb7f4cb515f74ec4c1f7575aaf0f7bcfa9c169997c2f3fb2b4453084c3a1afaa15cbc94770ba149ef1f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b3aa1c833ca019140666b5cbdd1844e84d0407f0f0fbfb0d4fb1b67c2bb52d0bad423929257d2f64c03adf4eed9bf0e24f5485e5933d09e952010ae6d34297160000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
         "mtp": {
           "existence": true,
           "siblings": []
@@ -50,5 +50,5 @@
   },
   "name": "FairHiring Orchestrator",
   "description": "Orchestrates FairHiring network and routes tasks to specialized Zynd agents.",
-  "seed": "Udun1AFbRJotv4rDvO2CPzeLc9l28sI3idc6cCPGXJw="
+  "seed": "QvWS01JXHWHZa8yyp4SFzFWeiV97dK0a1BKfKiaXpbs="
 }

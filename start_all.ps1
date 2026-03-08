@@ -1,5 +1,12 @@
-# start_all.ps1 - Unified startup for Fair Hiring System
-$env:PYTHONPATH="backend;."
+$PROJECT_ROOT = $PSScriptRoot
+Set-Location $PROJECT_ROOT
+
+$PYTHON_EXE = "$PROJECT_ROOT\.venv\Scripts\python.exe"
+if (!(Test-Path $PYTHON_EXE)) {
+    $PYTHON_EXE = "python"
+}
+
+$env:PYTHONPATH="$PROJECT_ROOT\backend;$PROJECT_ROOT"
 $env:ZYND_REGISTRY_URL="https://registry.zynd.ai"
 $env:ZYND_WEBHOOK_HOST="127.0.0.1"
 $env:USE_ZYND="1"
@@ -19,38 +26,41 @@ foreach ($port in $ports) {
     }
 }
 
+Write-Host "🧹 Resetting agent state to avoid unauthorized errors..." -ForegroundColor Yellow
+& $PYTHON_EXE reset_for_demo.py
+
 Start-Sleep -s 3
 
 Write-Host "Starting Backend (API on 8012, Registry on 5100)..."
-Start-Process .venv\Scripts\python.exe -ArgumentList "-m uvicorn app.main:app --host 127.0.0.1 --port 8012 --log-level info" -NoNewWindow -WorkingDirectory "backend" -RedirectStandardOutput "backend.log" -RedirectStandardError "backend_err.log"
+Start-Process $PYTHON_EXE -ArgumentList "-m uvicorn app.main:app --host 0.0.0.0 --port 8012 --log-level info" -NoNewWindow -WorkingDirectory "$PROJECT_ROOT\backend" -RedirectStandardOutput "backend.log" -RedirectStandardError "backend_err.log"
 Start-Sleep -s 10
 
 Write-Host "Starting Matching Agent (5101)..."
-Start-Process .venv\Scripts\python.exe -ArgumentList "-m zynd_integration.agents.matching_agent" -NoNewWindow -RedirectStandardOutput "matching_agent.log" -RedirectStandardError "matching_agent_err.log"
+Start-Process $PYTHON_EXE -ArgumentList "-m zynd_integration.agents.matching_agent" -NoNewWindow -WorkingDirectory $PROJECT_ROOT -RedirectStandardOutput "matching_agent.log" -RedirectStandardError "matching_agent_err.log"
 Start-Sleep -s 2
 
 Write-Host "Starting Bias Agent (5102)..."
-Start-Process .venv\Scripts\python.exe -ArgumentList "-m zynd_integration.agents.bias_agent" -NoNewWindow -RedirectStandardOutput "bias_agent.log" -RedirectStandardError "bias_agent_err.log"
+Start-Process $PYTHON_EXE -ArgumentList "-m zynd_integration.agents.bias_agent" -NoNewWindow -WorkingDirectory $PROJECT_ROOT -RedirectStandardOutput "bias_agent.log" -RedirectStandardError "bias_agent_err.log"
 Start-Sleep -s 2
 
 Write-Host "Starting Skill Agent (5103)..."
-Start-Process .venv\Scripts\python.exe -ArgumentList "-m zynd_integration.agents.skill_agent" -NoNewWindow -RedirectStandardOutput "skill_agent.log" -RedirectStandardError "skill_agent_err.log"
+Start-Process $PYTHON_EXE -ArgumentList "-m zynd_integration.agents.skill_agent" -NoNewWindow -WorkingDirectory $PROJECT_ROOT -RedirectStandardOutput "skill_agent.log" -RedirectStandardError "skill_agent_err.log"
 Start-Sleep -s 2
 
 Write-Host "Starting ATS Agent (5104)..."
-Start-Process .venv\Scripts\python.exe -ArgumentList "-m zynd_integration.agents.ats_agent" -NoNewWindow -RedirectStandardOutput "ats_agent.log" -RedirectStandardError "ats_agent_err.log"
+Start-Process $PYTHON_EXE -ArgumentList "-m zynd_integration.agents.ats_agent" -NoNewWindow -WorkingDirectory $PROJECT_ROOT -RedirectStandardOutput "ats_agent.log" -RedirectStandardError "ats_agent_err.log"
 Start-Sleep -s 2
 
 Write-Host "Starting Passport Agent (5105)..."
-Start-Process .venv\Scripts\python.exe -ArgumentList "-m zynd_integration.agents.passport_agent" -NoNewWindow -RedirectStandardOutput "passport_agent.log" -RedirectStandardError "passport_agent_err.log"
+Start-Process $PYTHON_EXE -ArgumentList "-m zynd_integration.agents.passport_agent" -NoNewWindow -WorkingDirectory $PROJECT_ROOT -RedirectStandardOutput "passport_agent.log" -RedirectStandardError "passport_agent_err.log"
 Start-Sleep -s 2
 
 Write-Host "Starting GitHub Agent (5106)..."
-Start-Process .venv\Scripts\python.exe -ArgumentList "-m zynd_integration.agents.github_agent" -NoNewWindow -RedirectStandardOutput "github_agent.log" -RedirectStandardError "github_agent_err.log"
+Start-Process $PYTHON_EXE -ArgumentList "-m zynd_integration.agents.github_agent" -NoNewWindow -WorkingDirectory $PROJECT_ROOT -RedirectStandardOutput "github_agent.log" -RedirectStandardError "github_agent_err.log"
 Start-Sleep -s 2
 
 Write-Host "Starting LinkedIn Agent (5107)..."
-Start-Process .venv\Scripts\python.exe -ArgumentList "-m zynd_integration.agents.linkedin_agent" -NoNewWindow -RedirectStandardOutput "linkedin_agent.log" -RedirectStandardError "linkedin_agent_err.log"
+Start-Process $PYTHON_EXE -ArgumentList "-m zynd_integration.agents.linkedin_agent" -NoNewWindow -WorkingDirectory $PROJECT_ROOT -RedirectStandardOutput "linkedin_agent.log" -RedirectStandardError "linkedin_agent_err.log"
 
 Write-Host "System initialized on 127.0.0.1. Checking ports in 5 seconds..."
 Start-Sleep -s 5

@@ -34,11 +34,17 @@ def reset():
         print(f"  Removing {log}...")
         os.remove(log)
 
-    # 4. Clear Agent State
-    agent_dirs = [d for d in os.listdir(".") if d.startswith(".agent-")]
-    for d in agent_dirs:
-        print(f"  Cleaning agent state {d}...")
-        shutil.rmtree(d, ignore_errors=True)
+    # 4. Clear Agent State (Comprehensive)
+    # Search root and backend
+    search_paths = [".", "backend"]
+    for base in search_paths:
+        base_path = Path(base)
+        if not base_path.exists(): continue
+        for d in os.listdir(base):
+            if d.startswith(".agent-"):
+                agent_dir = base_path / d
+                print(f"  Cleaning agent state {agent_dir}...")
+                shutil.rmtree(agent_dir, ignore_errors=True)
 
     print("\n✅ System Reset Complete. Ready for a fresh start!")
 

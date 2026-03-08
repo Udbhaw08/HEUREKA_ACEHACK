@@ -8,7 +8,12 @@ Write-Host ""
 
 # Activate virtual environment
 Write-Host "Activating virtual environment..." -ForegroundColor Yellow
-.\venv\Scripts\activate
+$VENV_PATH = "$PSScriptRoot\..\.venv"
+if (Test-Path "$VENV_PATH\Scripts\activate") {
+    & "$VENV_PATH\Scripts\Activate.ps1"
+} elseif (Test-Path "$PSScriptRoot\venv\Scripts\activate") {
+    & "$PSScriptRoot\venv\Scripts\Activate.ps1"
+}
 
 # Check if .env file exists
 if (!(Test-Path ".env")) {
@@ -24,4 +29,5 @@ Write-Host ""
 Write-Host "API Documentation: http://localhost:8000/docs" -ForegroundColor Cyan
 Write-Host ""
 
+$env:PYTHONPATH = "$PSScriptRoot"
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000

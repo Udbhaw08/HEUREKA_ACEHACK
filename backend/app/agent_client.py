@@ -11,8 +11,15 @@ from datetime import datetime
 import json
 
 USE_ZYND = os.getenv('USE_ZYND', '0') == '1'
-if USE_ZYND:
-    from .zynd_orchestrator import get_orchestrator
+
+def _get_zynd_orchestrator():
+    """Lazily import and return the Zynd orchestrator. Returns None on failure."""
+    try:
+        from .zynd_orchestrator import get_orchestrator
+        return get_orchestrator()
+    except Exception as e:
+        logger.warning(f"Zynd orchestrator unavailable, falling back to direct HTTP: {e}")
+        return None
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -66,22 +73,23 @@ class AgentClient:
         # Zynd mode: discover + call remote agent via /webhook/sync
         ZYND_AGENTS = ["matching", "bias", "skill", "ats", "passport", "github", "linkedin"]
         if USE_ZYND and agent_name in ZYND_AGENTS:
-            orch = get_orchestrator()
-            capability_map = {
-                "matching": ["fair_hiring", "matching"],
-                "bias": ["fair_hiring", "bias_detection"],
-                "skill": ["fair_hiring", "skill_verification"],
-                "ats": ["fair_hiring", "ats"],
-                "passport": ["fair_hiring", "passport"],
-            }
-            caps = capability_map.get(agent_name, [agent_name])
-            found = orch.discover(caps, top_k=5)
-            if not found:
-                logger.warning(f"No Zynd agents found for {agent_name} capabilities={caps}. Falling back to direct call.")
-            else:
-                logger.info(f"[zynd-orch] Discovered {agent_name}: {found[0]}")
-                result = orch.call_sync(found[0], payload)
-                return result
+            orch = _get_zynd_orchestrator()
+            if orch is not None:
+                capability_map = {
+                    "matching": ["fair_hiring", "matching"],
+                    "bias": ["fair_hiring", "bias_detection"],
+                    "skill": ["fair_hiring", "skill_verification"],
+                    "ats": ["fair_hiring", "ats"],
+                    "passport": ["fair_hiring", "passport"],
+                }
+                caps = capability_map.get(agent_name, [agent_name])
+                found = orch.discover(caps, top_k=5)
+                if not found:
+                    logger.warning(f"No Zynd agents found for {agent_name} capabilities={caps}. Falling back to direct call.")
+                else:
+                    logger.info(f"[zynd-orch] Discovered {agent_name}: {found[0]}")
+                    result = orch.call_sync(found[0], payload)
+                    return result
         url = f"{self.endpoints[agent_name]}{endpoint}"
         timeout = httpx.Timeout(self.timeout)
         retries = 3

@@ -1,8 +1,8 @@
 {
-  "id": "4338e482-03a2-4519-8f06-811306bd638c",
-  "didIdentifier": "did:polygonid:polygon:amoy:2qY3FinJx7Dcg9LBWZhjj2LYNCQSB9YuzxttEVcJJv",
+  "id": "1be47a45-d381-422d-bffd-bca4beae3eea",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qVgfWdmAjtfDE5RABmFZmwc5EToYWkGqzvp449jRh",
   "did": {
-    "id": "urn:108ec73c-b18f-4c83-b69b-aecf2145f005",
+    "id": "urn:ad2a7c85-4dd1-4713-adc7-f9ce980e6862",
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
       "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
@@ -13,34 +13,34 @@
       "AuthBJJCredential"
     ],
     "credentialSubject": {
-      "x": "2133539553966819997597818380688109713625893335630452041325031824210597428037",
-      "y": "17678929549596682304784255476765636867643505921811628267282655779147138165047",
+      "x": "2691623962823736547232122295558881660231783180557527913883217690429987505909",
+      "y": "13348619003659837243992704085102142419074145384737150830918923333808179577498",
       "type": "AuthBJJCredential"
     },
-    "issuer": "did:polygonid:polygon:amoy:2qY3FinJx7Dcg9LBWZhjj2LYNCQSB9YuzxttEVcJJv",
+    "issuer": "did:polygonid:polygon:amoy:2qVgfWdmAjtfDE5RABmFZmwc5EToYWkGqzvp449jRh",
     "credentialSchema": {
       "id": "https://schema.iden3.io/core/json/auth.json",
       "type": "JsonSchema2023"
     },
     "credentialStatus": {
-      "id": "https://rhs-staging.polygonid.me/node?state=1917e92bc0af21d974994b227b5c2467ab3b9071b3223201c7faaac1450ab603",
+      "id": "https://rhs-staging.polygonid.me/node?state=0f283877d57b41b2c2fd3be3733fb0fab9f05ff31bc6e7af3dba5e9dd7ffa719",
       "type": "Iden3ReverseSparseMerkleTreeProof",
       "revocationNonce": 0
     },
-    "issuanceDate": "2026-02-21T19:11:05.074Z",
+    "issuanceDate": "2026-03-08T04:25:08.306Z",
     "proof": [
       {
         "issuerData": {
-          "id": "did:polygonid:polygon:amoy:2qY3FinJx7Dcg9LBWZhjj2LYNCQSB9YuzxttEVcJJv",
+          "id": "did:polygonid:polygon:amoy:2qVgfWdmAjtfDE5RABmFZmwc5EToYWkGqzvp449jRh",
           "state": {
             "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
             "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
-            "claimsTreeRoot": "2d7d60ff283a56233bf9530a73b8384a28e63fa5232170bcec7804df594fda0e",
-            "value": "1917e92bc0af21d974994b227b5c2467ab3b9071b3223201c7faaac1450ab603"
+            "claimsTreeRoot": "a787e77128db2cd5ba6fc0cdd99aea43b850c8f2bcf27950619551974f442703",
+            "value": "0f283877d57b41b2c2fd3be3733fb0fab9f05ff31bc6e7af3dba5e9dd7ffa719"
           }
         },
         "type": "Iden3SparseMerkleTreeProof",
-        "coreClaim": "cca3371a6cb1b715004407e325bd993c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000045bb7e8d267c7e402bf6e61b6931b1da6f709540afd01343ab38f35c648ab70437694fadfad1cbf224049af0d72bbdfa54e39b1babbf86a5acc6b53a66eb15270000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f546f47b12dca4eb3efc8da56468172e36c1df0359ee487f396e1a95b967f3059a02ff26b55fcdf9a68ff449d36a60766396a98dca75e61eddb1961df50c831d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
         "mtp": {
           "existence": true,
           "siblings": []
@@ -50,5 +50,5 @@
   },
   "name": "Bias Agent",
   "description": "Detects bias signals in hiring decisions and produces an explainable bias report.",
-  "seed": "ON7IkhNqkxolfdVc9NF3JXa5CoGf3ZO9yIOea1V1zms="
+  "seed": "nQHgQBzGu1iHn8Ku/OO/GpIFny0+jNjilUTyCGp9h5Q="
 }

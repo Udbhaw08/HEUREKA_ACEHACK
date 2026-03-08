@@ -1,13 +1,11 @@
-# ULTIMATE_DEMO_LAUNCHER.ps1
-# Professional Multi-Agent Orchestration Launcher for Zynd Hackathon
-
-$env:PYTHONPATH="backend;."
+$PROJECT_ROOT = $PSScriptRoot
+$env:PYTHONPATH="$PROJECT_ROOT\backend;$PROJECT_ROOT"
 $env:USE_ZYND="1"
 $env:ZYND_REGISTRY_URL="https://registry.zynd.ai"
 $env:ZYND_WEBHOOK_HOST="127.0.0.1"
 
 # Automatically detect venv or system python
-$VENV_PY = "d:\ZyndHiring\Zyndv1\.venv\Scripts\python.exe"
+$VENV_PY = "$PROJECT_ROOT\.venv\Scripts\python.exe"
 if (Test-Path $VENV_PY) {
     $PYTHON_CMD = $VENV_PY
 } else {
@@ -32,7 +30,7 @@ Write-Host "`n🚀 Launching Agent Network..." -ForegroundColor Green
 function Start-Agent {
     param ([string]$Name, [string]$Command, [string]$Color = "Cyan")
     Write-Host "  -> Starting $Name..." -ForegroundColor $Color
-    Start-Process powershell -ArgumentList "-NoExit", "-Command", "& { `$Host.UI.RawUI.WindowTitle = '$Name'; `$env:PYTHONPATH='backend;.'; `$env:USE_ZYND='1'; & '$PYTHON_CMD' -m $Command }"
+    Start-Process powershell -ArgumentList "-NoExit", "-Command", "& { `$Host.UI.RawUI.WindowTitle = '$Name'; `$env:PYTHONPATH='$PROJECT_ROOT\backend;$PROJECT_ROOT'; `$env:USE_ZYND='1'; & '$PYTHON_CMD' -m $Command }" -WorkingDirectory $PROJECT_ROOT
 }
 
 # 1. CORE SYSTEM
