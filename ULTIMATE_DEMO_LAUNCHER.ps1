@@ -4,10 +4,10 @@
 $env:PYTHONPATH="backend;."
 $env:USE_ZYND="1"
 $env:ZYND_REGISTRY_URL="https://registry.zynd.ai"
-$env:ZYND_WEBHOOK_HOST="127.0.0.1"
+$env:ZYND_WEBHOOK_HOST="0.0.0.0"
 
 # Automatically detect venv or system python
-$VENV_PY = "d:\ZyndHiring\Zyndv1\.venv\Scripts\python.exe"
+$VENV_PY = "$PSScriptRoot\.venv\Scripts\python.exe"
 if (Test-Path $VENV_PY) {
     $PYTHON_CMD = $VENV_PY
 } else {
@@ -32,11 +32,11 @@ Write-Host "`n🚀 Launching Agent Network..." -ForegroundColor Green
 function Start-Agent {
     param ([string]$Name, [string]$Command, [string]$Color = "Cyan")
     Write-Host "  -> Starting $Name..." -ForegroundColor $Color
-    Start-Process powershell -ArgumentList "-NoExit", "-Command", "& { `$Host.UI.RawUI.WindowTitle = '$Name'; `$env:PYTHONPATH='backend;.'; `$env:USE_ZYND='1'; & '$PYTHON_CMD' -m $Command }"
+    Start-Process powershell -ArgumentList "-NoExit", "-Command", "& { `$Host.UI.RawUI.WindowTitle = '$Name'; `$env:PYTHONPATH='backend;.'; `$env:USE_ZYND='1'; `$env:ZYND_WEBHOOK_HOST='0.0.0.0'; & '$PYTHON_CMD' -m $Command }"
 }
 
 # 1. CORE SYSTEM
-Start-Agent "CORE BACKEND (Port 8012)" "uvicorn app.main:app --host 127.0.0.1 --port 8012 --log-level info" "White"
+Start-Agent "CORE BACKEND (Port 8012)" "uvicorn app.main:app --host 0.0.0.0 --port 8012 --log-level info" "White"
 Start-Sleep -s 3
 
 # 2. VERIFICATION CLUSTER

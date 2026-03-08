@@ -1,7 +1,7 @@
 # start_all.ps1 - Unified startup for Fair Hiring System
 $env:PYTHONPATH="backend;."
 $env:ZYND_REGISTRY_URL="https://registry.zynd.ai"
-$env:ZYND_WEBHOOK_HOST="127.0.0.1"
+$env:ZYND_WEBHOOK_HOST="0.0.0.0"
 $env:USE_ZYND="1"
 
 $ports = 5100, 5101, 5102, 5103, 5104, 5105, 5106, 5107
@@ -22,7 +22,7 @@ foreach ($port in $ports) {
 Start-Sleep -s 3
 
 Write-Host "Starting Backend (API on 8012, Registry on 5100)..."
-Start-Process .venv\Scripts\python.exe -ArgumentList "-m uvicorn app.main:app --host 127.0.0.1 --port 8012 --log-level info" -NoNewWindow -WorkingDirectory "backend" -RedirectStandardOutput "backend.log" -RedirectStandardError "backend_err.log"
+Start-Process .venv\Scripts\python.exe -ArgumentList "-m uvicorn app.main:app --host 0.0.0.0 --port 8012 --log-level info" -NoNewWindow -WorkingDirectory "backend" -RedirectStandardOutput "backend.log" -RedirectStandardError "backend_err.log"
 Start-Sleep -s 10
 
 Write-Host "Starting Matching Agent (5101)..."
