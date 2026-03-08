@@ -3,6 +3,7 @@ import { GoogleGenAI, Modality, Type } from '@google/genai';
 import { InterviewStatus } from './types';
 import { GEMINI_MODEL, Icons } from './constants';
 import { createPcmBlob, decode, decodeAudioData } from './audioUtils';
+import { generateVoice } from './elevenlabsService';
 
 const FRAME_RATE = 1;
 const JPEG_QUALITY = 0.5;
@@ -50,6 +51,7 @@ export const InterviewSession = ({ config, onComplete }) => {
     const frameIntervalRef = useRef(null);
     const timerIntervalRef = useRef(null);
     const isMutedRef = useRef(false);
+    const elevenLabsAudioRef = useRef(null);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -117,6 +119,10 @@ export const InterviewSession = ({ config, onComplete }) => {
         }
         if (feedbackTimeoutRef.current) {
             clearTimeout(feedbackTimeoutRef.current);
+        }
+        if (elevenLabsAudioRef.current) {
+            elevenLabsAudioRef.current.pause();
+            elevenLabsAudioRef.current = null;
         }
         sourcesRef.current.forEach(s => { try { s.stop(); } catch (e) { } });
         sourcesRef.current.clear();
@@ -235,11 +241,28 @@ export const InterviewSession = ({ config, onComplete }) => {
                                     ...(uText ? [{ role: 'user', text: uText }] : []),
                                     ...(mText ? [{ role: 'interviewer', text: mText }] : [])
                                 ]);
+
+                                // ElevenLabs Integration: Play the refined voice
+                                if (mText) {
+                                    (async () => {
+                                        const audioUrl = await generateVoice(mText);
+                                        if (audioUrl) {
+                                            if (elevenLabsAudioRef.current) {
+                                                elevenLabsAudioRef.current.pause();
+                                            }
+                                            const audio = new Audio(audioUrl);
+                                            elevenLabsAudioRef.current = audio;
+                                            audio.play().catch(e => console.error("Audio playback failed", e));
+                                        }
+                                    })();
+                                }
                             }
                             transcriptionRef.current = { user: '', model: '' };
                             setPartialTranscript({ user: '', model: '' });
                         }
 
+                        // Gemini default audio is disabled in favor of ElevenLabs
+                        /*
                         const base64Audio = msg.serverContent?.modelTurn?.parts[0]?.inlineData?.data;
                         if (base64Audio) {
                             const ctx = audioContextRef.current.output;
@@ -253,8 +276,13 @@ export const InterviewSession = ({ config, onComplete }) => {
                             nextStartTimeRef.current += audioBuffer.duration;
                             sourcesRef.current.add(source);
                         }
+                        */
 
                         if (msg.serverContent?.interrupted) {
+                            if (elevenLabsAudioRef.current) {
+                                elevenLabsAudioRef.current.pause();
+                                elevenLabsAudioRef.current = null;
+                            }
                             sourcesRef.current.forEach(s => { try { s.stop(); } catch (e) { } });
                             sourcesRef.current.clear();
                             nextStartTimeRef.current = 0;

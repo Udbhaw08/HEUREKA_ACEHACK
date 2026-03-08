@@ -1,12 +1,26 @@
-// Fallback to explicit DEV port 8010 if VITE_BACKEND_URL is missing or fails.
-const BASE = import.meta.env.VITE_BACKEND_URL || "http://localhost:8012"; // Updated to match start_all.ps1
+// Dynamic backend URL: if accessed via network IP (e.g. NFC on mobile), use that same IP
+// so API calls reach the backend. Falls back to localhost for development.
+const _envBase = import.meta.env.VITE_BACKEND_URL;
+const _dynamicBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:8012'
+  : `http://${window.location.hostname}:8012`;
+const BASE = _envBase || _dynamicBase;
 console.log("Using Backend URL:", BASE);
+
+// ── Auth token management ─────────────────────────────────────────────────────
+// Call setAuthToken(token) after Auth0 login so all subsequent API calls include
+// the Bearer token. The token is never persisted to localStorage.
+let _authToken = null;
+export function setAuthToken(token) { _authToken = token; }
+export function getAuthToken() { return _authToken; }
 
 async function request(path, options) {
   const isFormData = options?.body instanceof FormData;
 
   const headers = {
     ...(isFormData ? {} : { "Content-Type": "application/json" }),
+    // Attach Auth0 Bearer token if available
+    ...(_authToken ? { Authorization: `Bearer ${_authToken}` } : {}),
     ...(options?.headers || {}),
   };
 
@@ -37,6 +51,11 @@ export const api = {
     request("/auth/candidate/login", {
       method: "POST",
       body: JSON.stringify(payload),
+    }),
+  // Auth0 integration: called after Auth0 redirect, syncs the DB row
+  auth0SyncCandidate: () =>
+    request("/auth/candidate/auth0-sync", {
+      method: "POST",
     }),
   companySignup: (payload) =>
     request("/auth/company/signup", {

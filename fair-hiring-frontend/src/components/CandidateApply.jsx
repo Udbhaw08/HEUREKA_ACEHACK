@@ -237,6 +237,12 @@ export default function CandidateApply({ roleId, roleData: propRoleData, onExit,
                                                     <span className="font-inter text-[10px] font-black uppercase opacity-60 text-black">REQUIRED</span>
                                                 </div>
                                                 <div className="space-y-4">
+                                                    <div className="bg-red-500/20 border-l-4 border-red-800 p-4 mb-2">
+                                                        <p className="font-inter text-[10px] font-black uppercase tracking-tight text-black flex items-center gap-2">
+                                                            <span className="text-sm">ℹ️</span> 
+                                                            IMPORTANT: Ensure all repositories you wish to be evaluated are set to PUBLIC.
+                                                        </p>
+                                                    </div>
                                                     <input
                                                         type="url"
                                                         placeholder="GITHUB.COM/USERNAME"

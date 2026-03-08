@@ -143,7 +143,7 @@ export default function CompanyHiringFlow({ onExit, onComplete }) {
     // Move setPublished(true) into the try block to ensure we only show success if backend persists.
     try {
       const companyId = localStorage.getItem("fhn_company_id");
-      
+
       if (!companyId) {
         alert("Session expired. Please log in again.");
         return;
@@ -158,7 +158,7 @@ export default function CompanyHiringFlow({ onExit, onComplete }) {
       });
       console.log("✅ Job persisted to backend");
       setPublished(true); // Only now show the success screen
-      
+
     } catch (e) {
       console.error("❌ Failed to persist job to backend:", e);
       alert(`Failed to publish role: ${e.message}. Check console for details.`);

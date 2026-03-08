@@ -108,6 +108,7 @@ export const AnalysisReport = ({ analysis, onReset }) => {
                 </div>
             </div>
 
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="bg-white border-[3px] border-[#1c1c1c] p-12 shadow-[12px_12px_0px_#1c1c1c]/5">
                     <h3 className="text-2xl font-black text-[#1c1c1c] mb-10 flex items-center gap-4 uppercase font-montreal">

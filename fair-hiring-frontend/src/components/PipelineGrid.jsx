@@ -98,8 +98,8 @@ export default function PipelineGrid({ columns }) {
             >
               <div className="flex justify-between items-start mb-12">
                 <div className="space-y-4">
-                  <span className={`inline-block px-4 py-1.5 font-grotesk font-black text-[10px] tracking-[0.2em] uppercase ${selectedCandidate.status === 'matched' || selectedCandidate.status === 'selected' || selectedCandidate.confidence >= 80 ? 'bg-[#A7FF2E] text-black' : 'bg-[#FF4D4D] text-white'}`}>
-                    {selectedCandidate.status === 'matched' || selectedCandidate.status === 'selected' ? 'SELECTED' : selectedCandidate.confidence >= 80 ? 'SELECTED' : 'REJECTED'}
+                  <span className={`inline-block px-4 py-1.5 font-grotesk font-black text-[10px] tracking-[0.2em] uppercase ${selectedCandidate.status === 'needs_review' ? 'bg-yellow-400 text-black' : selectedCandidate.status === 'matched' || selectedCandidate.status === 'selected' || selectedCandidate.confidence >= 80 ? 'bg-[#A7FF2E] text-black' : 'bg-[#FF4D4D] text-white'}`}>
+                    {selectedCandidate.status === 'needs_review' ? 'REVIEW REQUIRED' : selectedCandidate.status === 'matched' || selectedCandidate.status === 'selected' ? 'SELECTED' : selectedCandidate.confidence >= 80 ? 'SELECTED' : 'REJECTED'}
                   </span>
                   <div className="space-y-1">
                     <h3 className="font-montreal font-black text-4xl uppercase tracking-tighter">{selectedCandidate.job_title}</h3>
@@ -134,28 +134,28 @@ export default function PipelineGrid({ columns }) {
                       <label className="font-grotesk text-[11px] font-black opacity-40 uppercase tracking-widest block">TECHNICAL REPERTOIRE</label>
                       <div className="flex flex-wrap gap-2 text-[10px] font-bold uppercase font-inter">
                         {(() => {
-                           let skills = (selectedCandidate.feedback?.matched_skills || selectedCandidate.feedback?.analysis?.matched_skills || []);
-                           
-                           if (skills.length === 0) {
-                             const verified = selectedCandidate.feedback?.verified_skills || selectedCandidate.verified_skills;
-                             if (verified) {
-                               if (Array.isArray(verified)) skills = verified;
-                               else if (typeof verified === 'object') {
-                                 skills = [...(verified.core || []), ...(verified.frameworks || []), ...(verified.infrastructure || []), ...(verified.tools || [])];
-                               }
-                             }
-                           }
+                          let skills = (selectedCandidate.feedback?.matched_skills || selectedCandidate.feedback?.analysis?.matched_skills || []);
 
-                           if (skills.length === 0) {
-                             return <span className="opacity-30 italic">No specific technical signatures detected</span>;
-                           }
+                          if (skills.length === 0) {
+                            const verified = selectedCandidate.feedback?.verified_skills || selectedCandidate.verified_skills;
+                            if (verified) {
+                              if (Array.isArray(verified)) skills = verified;
+                              else if (typeof verified === 'object') {
+                                skills = [...(verified.core || []), ...(verified.frameworks || []), ...(verified.infrastructure || []), ...(verified.tools || [])];
+                              }
+                            }
+                          }
 
-                           return [...new Set(skills.map(s => {
-                             const name = typeof s === 'string' ? s : (s.name || s.skill || "");
-                             return name;
-                           }))].map(s => (
-                             <span key={s} className="border-2 border-black px-3 py-1 bg-black/5">{s}</span>
-                           ));
+                          if (skills.length === 0) {
+                            return <span className="opacity-30 italic">No specific technical signatures detected</span>;
+                          }
+
+                          return [...new Set(skills.map(s => {
+                            const name = typeof s === 'string' ? s : (s.name || s.skill || "");
+                            return name;
+                          }))].map(s => (
+                            <span key={s} className="border-2 border-black px-3 py-1 bg-black/5">{s}</span>
+                          ));
                         })()}
                       </div>
                     </div>
@@ -163,7 +163,9 @@ export default function PipelineGrid({ columns }) {
                       <label className="font-grotesk text-[11px] font-black opacity-40 uppercase tracking-widest block">MATCHING FEEDBACK</label>
                       <div className="bg-[#101218] p-6 text-white rounded-sm">
                         <p className="font-inter text-xs font-bold leading-relaxed uppercase tracking-tight opacity-80">
-                          {selectedCandidate.feedback?.error?.includes("502") || selectedCandidate.feedback?.recommendation?.includes("error") ? (
+                          {selectedCandidate.status === 'needs_review' ? (
+                            <span className="text-yellow-400 font-black">STATED SKILLS CONFLICT WITH SOURCE EVIDENCE. HUMAN AUDIT REQUIRED TO PROCEED.</span>
+                          ) : selectedCandidate.feedback?.error?.includes("502") || selectedCandidate.feedback?.recommendation?.includes("error") ? (
                             <span className="text-red-400">CAUTION: Job requirements extraction failed (Provider 502). Matching may be inaccurate due to missing job intent.</span>
                           ) : (
                             selectedCandidate.feedback?.recommendation || selectedCandidate.feedback?.message || (selectedCandidate.status === 'matched' || selectedCandidate.status === 'selected' ? "Verification complete: Technical alignment confirmed." : "Technical signatures analyzed; no significant alignment found.")
@@ -172,6 +174,24 @@ export default function PipelineGrid({ columns }) {
                       </div>
                     </div>
                   </div>
+
+                  {selectedCandidate.status === 'needs_review' && (
+                    <div className="pt-8 border-t-4 border-black space-y-6">
+                      <div className="flex items-center gap-4 bg-yellow-400/10 p-4 border-2 border-yellow-400/20">
+                        <span className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse" />
+                        <label className="font-grotesk text-[10px] font-black uppercase tracking-[0.2em] text-[#1c1c1c]">HUMAN REVIEW PROTOCOL ACTIVE</label>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <button className="px-10 py-6 bg-green-600 text-white font-grotesk text-[11px] font-black uppercase tracking-[0.3em] hover:bg-green-700 hover:scale-[1.02] transition-all flex items-center justify-center gap-3 group/btn">
+                          CLEAR EVIDENCE <span className="text-xl group-hover/btn:translate-x-1 transition-transform">→</span>
+                        </button>
+                        <button className="px-10 py-6 bg-red-600 text-white font-grotesk text-[11px] font-black uppercase tracking-[0.3em] hover:bg-red-700 hover:scale-[1.02] transition-all flex items-center justify-center gap-3 group/btn">
+                          RE-ESCALATE HUB <span className="text-xl group-hover/btn:scale-110 transition-transform">↻</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                   {(selectedCandidate.status === 'selected' || selectedCandidate.status === 'matched') && selectedCandidate.candidate_details && (
                     <div className="pt-8 border-t-4 border-black">

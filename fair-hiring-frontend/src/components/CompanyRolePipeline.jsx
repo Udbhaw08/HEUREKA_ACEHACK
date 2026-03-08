@@ -5,17 +5,16 @@ import JobDetailsModal from "./JobDetailsModal";
 import { api } from "../api/backend";
 
 const STATUS_TO_COLUMN = {
-  pending: "applied",
-  verified: "verified",
+  pending: "hidden", // We don't show the millions of raw applications
+  verified: "hidden",
   matched: "selected",
   selected: "selected",
+  needs_review: "selected", // Review cases also show up in the main selection hub
   rejected: "rejected",
 };
 
 const COLUMN_META = [
-  { id: "applied", title: "Applied" },
-  { id: "verified", title: "Verified" },
-  { id: "selected", title: "Selected" },
+  { id: "selected", title: "Selection & Review Hub" },
 ];
 
 export default function CompanyRolePipeline({ roleId, onBack, onSelectCandidate, onViewSelected }) {
@@ -139,10 +138,14 @@ export default function CompanyRolePipeline({ roleId, onBack, onSelectCandidate,
           </div>
         </div>
 
-        <div className="flex items-center gap-6">
-          <div className="font-mono text-[9px] font-black opacity-30 uppercase tracking-widest">
+        <div className="flex items-center gap-4">
+          <div className="font-mono text-[9px] font-black opacity-30 uppercase tracking-widest text-[#1c1c1c]">
             ROLE REF: {jobId || 'R-101'}
           </div>
+          <div className="px-3 py-1 bg-[#A7FF2E] text-black font-grotesk text-[8px] font-black uppercase tracking-widest rounded-full border border-black/10 shadow-sm">
+            INTELLIGENCE v3 ACTIVE
+          </div>
+          <div className="h-4 w-[1px] bg-black/10" />
           <button
             onClick={runMatching}
             disabled={running}
@@ -152,9 +155,9 @@ export default function CompanyRolePipeline({ roleId, onBack, onSelectCandidate,
           </button>
           <button
             onClick={() => setIsDetailsOpen(true)}
-            className="px-4 py-2 border border-black/10 bg-black/5 font-grotesk text-[9px] font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all"
+            className="px-6 py-2 border-2 border-black bg-white font-grotesk text-[10px] font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all shadow-[4px_4px_0px_#000]"
           >
-            VIEW ROLE SPEC
+            VERIFY ROLE SPEC
           </button>
         </div>
       </header>

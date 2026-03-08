@@ -12,6 +12,7 @@ import {
   Tooltip,
 } from "recharts";
 import GridPlus from "./GridPlus";
+import { useAuth } from "../auth/useAuth";
 
 import CandidateApply from "./CandidateApply";
 import SkillTestPage from "../candidate/SkillTestPage";
@@ -22,6 +23,7 @@ import { api } from "../api/backend";
 
 export default function CandidateExperience({ onExit }) {
   const navigate = useNavigate();
+  const { logout } = useAuth();
   const [activePage, setActivePage] = useState("dashboard");
   const [selectedRoleForApply, setSelectedRoleForApply] = useState(null);
 
@@ -46,7 +48,13 @@ export default function CandidateExperience({ onExit }) {
     localStorage.removeItem("fhn_candidate_anon_id");
     localStorage.removeItem("fhn_candidate_email");
     localStorage.removeItem("fhn_candidate_id");
-    window.location.href = "/candidate";
+    
+    // Auth0 logout: logs out from Auth0 and redirects to home
+    logout({ 
+      logoutParams: { 
+        returnTo: window.location.origin 
+      } 
+    });
   };
 
   useEffect(() => {

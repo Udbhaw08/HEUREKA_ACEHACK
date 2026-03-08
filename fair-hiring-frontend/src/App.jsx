@@ -44,7 +44,8 @@ function App() {
     const navigate = useNavigate();
     const location = useLocation();
     const [lenis, setLenis] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const isPassportRoute = location.pathname.startsWith("/passport/");
+    const [isLoading, setIsLoading] = useState(!isPassportRoute);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     // Company state (can be moved to a context if needed, but keeping for now)
