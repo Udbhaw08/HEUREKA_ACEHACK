@@ -71,7 +71,7 @@ class AgentClient:
         
 
         # Zynd mode: discover + call remote agent via /webhook/sync
-        ZYND_AGENTS = ["matching", "bias", "skill", "ats", "passport", "github", "linkedin"]
+        ZYND_AGENTS = ["matching", "bias", "skill", "ats", "passport", "github", "linkedin", "leetcode", "codeforces"]
         if USE_ZYND and agent_name in ZYND_AGENTS:
             orch = _get_zynd_orchestrator()
             if orch is not None:
@@ -81,6 +81,9 @@ class AgentClient:
                     "skill": ["fair_hiring", "skill_verification"],
                     "ats": ["fair_hiring", "ats"],
                     "passport": ["fair_hiring", "passport"],
+                    "github": ["fair_hiring", "github_analysis"],
+                    "leetcode": ["fair_hiring", "leetcode_analysis"],
+                    "codeforces": ["fair_hiring", "codeforces_analysis"],
                 }
                 caps = capability_map.get(agent_name, [agent_name])
                 found = orch.discover(caps, top_k=5)

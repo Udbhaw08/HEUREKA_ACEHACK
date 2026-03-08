@@ -22,7 +22,7 @@ def reset():
             shutil.rmtree(path)
         path.mkdir(parents=True, exist_ok=True)
         
-    # 2. Reset Database (if using SQLite)
+    # 2. Reset Database (Comprehensive)
     db_path = "backend/fair_hiring.db"
     if os.path.exists(db_path):
         print("  Wiping SQLite database...")

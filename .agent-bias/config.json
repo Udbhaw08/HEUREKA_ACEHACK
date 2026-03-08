@@ -1,8 +1,8 @@
 {
-  "id": "1be47a45-d381-422d-bffd-bca4beae3eea",
-  "didIdentifier": "did:polygonid:polygon:amoy:2qVgfWdmAjtfDE5RABmFZmwc5EToYWkGqzvp449jRh",
+  "id": "f1bfd0f0-1eab-4139-a4aa-0ab807e5d0b3",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qTcVJvV77jaKUHo1p65Wj9Xuf5kxAxSH4USBwceP7",
   "did": {
-    "id": "urn:ad2a7c85-4dd1-4713-adc7-f9ce980e6862",
+    "id": "urn:ae8c19be-2e6c-4052-a161-8f56704d1c92",
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
       "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
@@ -13,34 +13,34 @@
       "AuthBJJCredential"
     ],
     "credentialSubject": {
-      "x": "2691623962823736547232122295558881660231783180557527913883217690429987505909",
-      "y": "13348619003659837243992704085102142419074145384737150830918923333808179577498",
+      "x": "17384876045091085771767704520147606722633499334003192581714209218287915413478",
+      "y": "15464392242739275219550055875853082024026541211882865915080048795064129065144",
       "type": "AuthBJJCredential"
     },
-    "issuer": "did:polygonid:polygon:amoy:2qVgfWdmAjtfDE5RABmFZmwc5EToYWkGqzvp449jRh",
+    "issuer": "did:polygonid:polygon:amoy:2qTcVJvV77jaKUHo1p65Wj9Xuf5kxAxSH4USBwceP7",
     "credentialSchema": {
       "id": "https://schema.iden3.io/core/json/auth.json",
       "type": "JsonSchema2023"
     },
     "credentialStatus": {
-      "id": "https://rhs-staging.polygonid.me/node?state=0f283877d57b41b2c2fd3be3733fb0fab9f05ff31bc6e7af3dba5e9dd7ffa719",
+      "id": "https://rhs-staging.polygonid.me/node?state=92f400ecf54d9d6a607a731f1b44da52b2d4f809e9e8fae0b2906689bd732824",
       "type": "Iden3ReverseSparseMerkleTreeProof",
       "revocationNonce": 0
     },
-    "issuanceDate": "2026-03-08T04:25:08.306Z",
+    "issuanceDate": "2026-03-08T05:13:48.110Z",
     "proof": [
       {
         "issuerData": {
-          "id": "did:polygonid:polygon:amoy:2qVgfWdmAjtfDE5RABmFZmwc5EToYWkGqzvp449jRh",
+          "id": "did:polygonid:polygon:amoy:2qTcVJvV77jaKUHo1p65Wj9Xuf5kxAxSH4USBwceP7",
           "state": {
             "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
             "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
-            "claimsTreeRoot": "a787e77128db2cd5ba6fc0cdd99aea43b850c8f2bcf27950619551974f442703",
-            "value": "0f283877d57b41b2c2fd3be3733fb0fab9f05ff31bc6e7af3dba5e9dd7ffa719"
+            "claimsTreeRoot": "0ca242df39345f13ea4c9263626ba5d38d8af1ee87f3ad0a8055204f973dad06",
+            "value": "92f400ecf54d9d6a607a731f1b44da52b2d4f809e9e8fae0b2906689bd732824"
           }
         },
         "type": "Iden3SparseMerkleTreeProof",
-        "coreClaim": "cca3371a6cb1b715004407e325bd993c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f546f47b12dca4eb3efc8da56468172e36c1df0359ee487f396e1a95b967f3059a02ff26b55fcdf9a68ff449d36a60766396a98dca75e61eddb1961df50c831d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e6afbeb9ac28984c7a1fb0aa59b80f06a5d0f94dcd3dbcecf190cc8dbb7d6f26b8905446d2b5b3c4bc09df20f3cbda48f621caaec38af9f783dfee3b2c8930220000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
         "mtp": {
           "existence": true,
           "siblings": []
@@ -50,5 +50,5 @@
   },
   "name": "Bias Agent",
   "description": "Detects bias signals in hiring decisions and produces an explainable bias report.",
-  "seed": "nQHgQBzGu1iHn8Ku/OO/GpIFny0+jNjilUTyCGp9h5Q="
+  "seed": "xmmjJzc3oChlw1Fy1ozt8APJDrBX/zgRGG3/G+v9/tw="
 }

@@ -1,0 +1,54 @@
+{
+  "id": "51255e16-08a8-45e5-8c3d-0d6e9ef63266",
+  "didIdentifier": "did:polygonid:polygon:amoy:2qYoQ2Nb1u2ABKwAyJdb4j9YdMRHTF9V6Z7tcV9LDC",
+  "did": {
+    "id": "urn:eb1c1fe4-fc04-4a60-a858-321de707ce16",
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://schema.iden3.io/core/jsonld/iden3proofs.jsonld",
+      "https://schema.iden3.io/core/jsonld/auth.jsonld"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "AuthBJJCredential"
+    ],
+    "credentialSubject": {
+      "x": "2973494523057505978626854899546656908900277624852603016174548975531572647591",
+      "y": "19051266615960534243546818999507367961618626151082869146483519201514502665752",
+      "type": "AuthBJJCredential"
+    },
+    "issuer": "did:polygonid:polygon:amoy:2qYoQ2Nb1u2ABKwAyJdb4j9YdMRHTF9V6Z7tcV9LDC",
+    "credentialSchema": {
+      "id": "https://schema.iden3.io/core/json/auth.json",
+      "type": "JsonSchema2023"
+    },
+    "credentialStatus": {
+      "id": "https://rhs-staging.polygonid.me/node?state=028faca582bfe5bc1b9e9d533bdacebaa3117af9d349978104f8ced1eca63904",
+      "type": "Iden3ReverseSparseMerkleTreeProof",
+      "revocationNonce": 0
+    },
+    "issuanceDate": "2026-03-08T05:14:06.229Z",
+    "proof": [
+      {
+        "issuerData": {
+          "id": "did:polygonid:polygon:amoy:2qYoQ2Nb1u2ABKwAyJdb4j9YdMRHTF9V6Z7tcV9LDC",
+          "state": {
+            "rootOfRoots": "0000000000000000000000000000000000000000000000000000000000000000",
+            "revocationTreeRoot": "0000000000000000000000000000000000000000000000000000000000000000",
+            "claimsTreeRoot": "355ab1a2cee72350047d514624438c1f795b64a919b75d04f9665da028acf829",
+            "value": "028faca582bfe5bc1b9e9d533bdacebaa3117af9d349978104f8ced1eca63904"
+          }
+        },
+        "type": "Iden3SparseMerkleTreeProof",
+        "coreClaim": "cca3371a6cb1b715004407e325bd993c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a7d6bc684cd26604e7168e286df46c65ff71ada61b790745dc9856bd31f0920618b6b22cba7b21d4e68030751c662c2d719e31ec1fd45938b0a1621a81a21e2a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "mtp": {
+          "existence": true,
+          "siblings": []
+        }
+      }
+    ]
+  },
+  "name": "LeetCode Agent",
+  "description": "Scrapes and analyzes LeetCode profiles for problem-solving evidence.",
+  "seed": "REV5QbmZyRN8Lp93/g6gjfdcwybuE0RUN9uC6eiM5WI="
+}

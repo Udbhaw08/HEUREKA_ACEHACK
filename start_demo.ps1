@@ -29,8 +29,8 @@ foreach ($port in $ports) {
     }
 }
 
-Write-Host "🧹 Resetting agent state to avoid unauthorized errors..." -ForegroundColor Yellow
-& $PYTHON_CMD reset_for_demo.py
+# Write-Host "🧹 Resetting agent state to avoid unauthorized errors..." -ForegroundColor Yellow
+# & $PYTHON_CMD reset_for_demo.py
 
 Start-Sleep -s 3
 
@@ -73,6 +73,12 @@ Start-VisibleAgent -Name "GITHUB AGENT" -Command "zynd_integration.agents.github
 
 # 8. LinkedIn Agent
 Start-VisibleAgent -Name "LINKEDIN AGENT" -Command "zynd_integration.agents.linkedin_agent" -Port "5107"
+
+# 9. LeetCode Agent
+Start-VisibleAgent -Name "LEETCODE AGENT" -Command "zynd_integration.agents.leetcode_agent" -Port "5108"
+
+# 10. Codeforce Agent
+Start-VisibleAgent -Name "CODEFORCE AGENT" -Command "zynd_integration.agents.codeforce_agent" -Port "5109"
 
 Write-Host "
 ================================================================
