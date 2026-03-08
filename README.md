@@ -79,4 +79,7 @@ graph TD
 ```
 
 ---
+## 📄 License
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
 *Built for the Zynd AI Hackathon. Transforming hiring with transparency and trust.*
