@@ -955,8 +955,6 @@ class PipelineOrchestrator:
                         "job_id": app.job_id,
                         "verified_skills": self.state["derived"]["verified_skills"],
                         "match_score": self.state["derived"]["match_score"],
-                        # skill_confidence = evidence quality from Skill Verification Agent (Stage 6)
-                        "skill_confidence": self.state["derived"].get("confidence", 0),
                         # simplified hash for demo
                         "evidence_hash": str(hash(json.dumps(self.state["evidence"], sort_keys=True)))
                     }

@@ -131,7 +131,7 @@ const SkillDetailCard = ({ skill, onClose }) => {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                             <div className="space-y-2">
                                 <label className="font-grotesk text-[10px] uppercase opacity-100 tracking-widest font-black text-black">
-                                    MATCH SCORE
+                                    CONFIDENCE SCORE
                                 </label>
                                 <div className="flex items-baseline gap-3">
                                     <div className="font-montreal font-black text-7xl md:text-8xl uppercase tracking-tighter">
@@ -259,7 +259,7 @@ const SkillPassport = ({ isStandalone = false, onBack, candidateId }) => {
             return {
                 id: output?.id || output?.credential_id || cred?.credential_id || `PASSPORT-${existingData.application_id || 'UNKNOWN'}`,
                 candidateId: output?.candidate_id || cred?.candidate_id || anon,
-                confidence: output?.match_score || cred?.match_score || output?.skill_confidence || output?.confidence || 0,
+                confidence: output?.skill_confidence || output?.confidence || cred?.derived?.confidence || cred?.match_score || 0,
                 verifiedSkills: verifiedSkills,
                 status: output?.credential_status || (cred?.status === 'completed' ? 'VERIFIED' : cred?.status) || "VERIFIED",
                 issuedAt: output?.issued_at || cred?.issued_at || new Date().toISOString(),
@@ -373,7 +373,7 @@ const SkillPassport = ({ isStandalone = false, onBack, candidateId }) => {
                                         {skill.id}
                                     </h3>
                                     <p className="font-inter text-[10px] md:text-sm uppercase tracking-[0.2em] opacity-100 font-black text-black">
-                                        Verified technical signature · {skill.confidence}% match
+                                        Verified technical signature · {skill.confidence}% confidence
                                     </p>
                                 </div>
                                 <div className="bg-black text-white px-10 py-4 font-grotesk text-[10px] font-black uppercase tracking-[0.4em] hover:bg-black/90 transition-all shadow-[6px_6px_0px_#ccc] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none w-full md:w-auto text-center">
