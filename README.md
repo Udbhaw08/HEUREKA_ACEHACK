@@ -78,5 +78,4 @@ graph TD
 └── start_demo.ps1          # THE demo launcher
 ```
 
----
-*Built for the Zynd AI Hackathon. Transforming hiring with transparency and trust.*
+
