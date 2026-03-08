@@ -3,7 +3,7 @@
 
 $env:PYTHONPATH="backend;."
 $env:ZYND_REGISTRY_URL="https://registry.zynd.ai"
-$env:ZYND_WEBHOOK_HOST="0.0.0.0"
+$env:ZYND_WEBHOOK_HOST="127.0.0.1"
 $env:USE_ZYND="1"
 
 $ports = 5100, 5101, 5102, 5103, 5104, 5105, 5106, 5107
@@ -33,12 +33,12 @@ function Start-VisibleAgent {
     Write-Host "Starting $Name ($Port)..."
     # We launch a new PowerShell process that activates venv (if needed) and runs the module
     # We use -NoExit so the window stays open if it crashes, allowing debugging
-    Start-Process powershell -ArgumentList "-NoExit", "-Command", "& { `$env:PYTHONPATH='backend;.'; `$env:USE_ZYND='1'; `$env:ZYND_WEBHOOK_HOST='0.0.0.0'; `$Host.UI.RawUI.WindowTitle = '$Name ($Port)'; python -m $Command }"
+    Start-Process powershell -ArgumentList "-NoExit", "-Command", "& { `$env:PYTHONPATH='backend;.'; `$env:USE_ZYND='1'; `$Host.UI.RawUI.WindowTitle = '$Name ($Port)'; python -m $Command }"
     Start-Sleep -s 2
 }
 
 # 1. Backend
-Start-VisibleAgent -Name "BACKEND API" -Command "uvicorn app.main:app --host 0.0.0.0 --port 8012 --log-level info" -Port "8012"
+Start-VisibleAgent -Name "BACKEND API" -Command "uvicorn app.main:app --host 127.0.0.1 --port 8012 --log-level info" -Port "8012"
 
 # 2. Matching Agent
 Start-VisibleAgent -Name "MATCHING AGENT" -Command "zynd_integration.agents.matching_agent" -Port "5101"
