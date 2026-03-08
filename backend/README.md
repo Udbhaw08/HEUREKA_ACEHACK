@@ -10,9 +10,10 @@ This is the backend API for the Fair Hiring Platform - an AI-powered skill verif
 
 1. **FastAPI Application** - RESTful API server
 2. **PostgreSQL Database** - Persistent storage with asyncpg
-3. **Agent Services** - 8 independent AI agents running on separate ports
-4. **Pipeline Orchestrator** - Coordinates agent execution
-5. **Background Task System** - Async processing of long-running pipelines
+3. **Agent Services** - 9 independent AI agents running on separate ports
+4. **Auth0 Integration** - Secure authentication layer
+5. **Pipeline Orchestrator** - Coordinates agent execution
+6. **Background Task System** - Async processing of long-running pipelines
 
 ### Agent Services
 
@@ -21,6 +22,7 @@ This is the backend API for the Fair Hiring Platform - an AI-powered skill verif
 | ATS Agent | 8004 | Resume fraud detection |
 | GitHub Agent | 8005 | Code repository analysis |
 | LeetCode Agent | 8006 | Algorithmic problem solving verification |
+| Codeforces Agent | 8009 | Competitive programming verification |
 | LinkedIn Agent | 8007 | Professional history verification |
 | Skill Agent | 8003 | Skill verification and evidence graph |
 | Bias Agent | 8002 | Bias detection in job descriptions |
@@ -137,11 +139,12 @@ The `/api/pipeline/run` endpoint orchestrates the following sequence:
 1. **ATS Analysis** - Detect resume fraud and extract skills
 2. **GitHub Scraping** - Analyze code repositories
 3. **LeetCode Verification** - Verify algorithmic skills
-4. **LinkedIn Verification** - Verify professional history
-5. **Skill Verification** - Build evidence graph for skills
-6. **Bias Detection** - Check for bias in evaluation
-7. **Matching** - Calculate match score with job requirements
-8. **Passport Generation** - Create signed credential
+4. **Codeforces Verification** - Verify competitive programming history
+5. **LinkedIn Verification** - Verify professional history
+6. **Skill Verification** - Build evidence graph for skills
+7. **Bias Detection** - Check for bias in evaluation
+8. **Matching** - Calculate match score with job requirements
+9. **Passport Generation** - Create signed credential
 
 All results are aggregated and stored in the database.
 

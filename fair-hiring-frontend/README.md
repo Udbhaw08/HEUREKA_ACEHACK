@@ -1,6 +1,6 @@
 # Frontend – Fair Hiring Platform
 
-React frontend providing candidate & company dashboards.
+A premium React frontend providing comprehensive candidate & company dashboards, powered by **Zynd AI** and **Google Gemini**.
 
 ---
 
@@ -11,50 +11,40 @@ npm install
 npm run dev
 ```
 
-Runs at:
-
-```
-http://localhost:5173
-```
+Runs at: `http://localhost:5173`
 
 ---
 
-## 👤 Candidate Views
+## ✨ Key Features
 
-- Signup / Login
-- Available roles
-- Apply to jobs
-- Application status
-- Skill passport
-- Feedback & scores
+### 👤 Candidate Experience
+- **🔐 Secure Onboarding**: Integrated **Auth0** for seamless signup and profile management.
+- **📄 Application Tracking**: Live status updates for job applications.
+- **🛂 Skill Passport**: View your cryptographically signed verification results.
+- **📊 Performance Analytics**: Detailed score breakdowns and feedback.
 
----
-
-## 🏢 Company Views
-
-- Signup / Login
-- Job creation
-- Dashboard metrics
-- Role pipeline
-- Run matching
-- Selected candidates
+### 🏢 Company Dashboard
+- **🎯 Intelligent Matching**: AI-driven candidate matching based on verified skills.
+- **🎙️ Audio Intelligence**: Post-interview audio summaries powered by **ElevenLabs**.
+- **⚖️ Bias Auditing**: Real-time bias scoring for job descriptions.
+- **📈 Talent Pipeline**: Visual workflow for managing candidates.
 
 ---
 
-## 🔗 API Integration
+## 💻 Tech Stack
 
-Frontend consumes real backend APIs:
-
-- No mock data
-- No hardcoded counts
-- Live stats from database
+- **Core**: React (Vite), React Router 7.
+- **Styling**: Tailwind CSS, Vanilla CSS.
+- **Animations**: Framer Motion, GSAP, Lenis (Smooth Scroll).
+- **Data Viz**: Recharts.
+- **3D/Graphics**: Three.js.
+- **AI Integration**: ElevenLabs (TTS), Google Gemini (LLM SDK).
+- **Auth**: Auth0 React SDK.
 
 ---
 
-## 🎨 Design System
-
-- Consistent box-based UI
-- Shared components
-- No theme toggles (single theme)
+## 🎨 Design Philosophy
+- **Premium Aesthetics**: Glassmorphism, smooth transitions, and high-fidelity micro-animations.
+- **Evidence-First**: UI prioritizes displaying cryptographic evidence and verified metrics.
 
 ---
